@@ -1,7 +1,7 @@
-const requestPromise = require('request-promise');
+/*const requestPromise = require('request-promise');
 
 const preflight = {
-	/* Methods that provide logic for validatin the request */
+	/* Methods that provide logic for validatin the request 
 
 	// Check if authorization header is present
 	isAutorizaionHeaderPresent: (req, hasPreflightPassed) => {
@@ -32,7 +32,7 @@ const preflight = {
 	},
 
 
-	/* Method that runs the entire preflight process */
+	/* Method that runs the entire preflight process 
 
 	run: (req) => {
 		// Default state of the preflight process
@@ -60,4 +60,4 @@ const preflight = {
 
 };
 
-module.exports = preflight;
+module.exports = preflight;*/

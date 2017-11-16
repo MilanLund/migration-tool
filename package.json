@@ -1,0 +1,27 @@
+{
+  "name": "migration-tool",
+  "version": "0.0.1",
+  "private": false,
+  "scripts": {
+    "start": "nodemon ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MilanLund/migration-tool.git"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "express": "~4.14.0",
+    "morgan": "~1.7.0",
+    "nodemon": "^1.11.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  },
+  "main": "app.js",
+  "keywords": [],
+  "author": "Milan Lund",
+  "license": "MIT",
+  "description": "Exports/imports data from/to Kentico Cloud projects."
+}

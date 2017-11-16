@@ -1,0 +1,42 @@
+{  
+    "items":[  
+       {  
+          "item":{  
+             "name":"Management API test post 1",
+             "id":null,
+             "type":{  
+                "codename":"simple_type",
+                "id":null
+             },
+             "sitemap_locations":[  
+                {  
+                   "codename":"sample_sitemap_grand_child",
+                   "id":null
+                }
+             ]
+          },
+          "variants":[  
+             {  
+                "language":{  
+                   "codename":"Czech",
+                   "id":null
+                },
+                "elements":{  
+                   "simple_text":"Management API testovací článek 1",
+                   "simple_number":20
+                }
+             },
+             {  
+                "language":{  
+                   "codename":"default",
+                   "id":null
+                },
+                "elements":{  
+                   "simple_text":"Management API test post 1",
+                   "simple_number":10
+                }
+             }
+          ]
+       }
+    ]
+ }

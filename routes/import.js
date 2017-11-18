@@ -11,17 +11,26 @@ router.post('/:projectId', (req, res, next) => {
 
 			// Second level - Validate content types
 			requestPromise(helper.getRequestContentTypesOptions(req))
-				.then((response) => {
-					var requestedContentTypes = helper.getContentTypes(req.body); 
-					helper.compareContentTypes(requestedContentTypes, response);
+				.then((contentTypes) => {
+					var isDataValid = helper.isImportDataValid(req.body, contentTypes);
 
-					helper.sendResponse(res, 200, response);
+					if (isDataValid.isDataValid) {
+						helper.sendResponse(res, 200, contentTypes);
+					} else {
+						helper.sendResponse(res, 400, isDataValid.message);
+					}
 				})
+				/*.catch((error) => {
+					helper.sendResponse(res, error.statusCode, error.error.message);
+				});*/
 		})
 		.catch((error) => {
 			helper.sendResponse(res, error.statusCode, error.error.message);
-		});
-	
+		});	
+});
+
+router.use('/:projectId', (req, res, next) => {
+	helper.sendResponse(res, 405, 'The endpoint supports only the POST request.');
 });
 
 module.exports = router;

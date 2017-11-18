@@ -4,8 +4,7 @@ const express = require('express'),
 		bodyParser = require('body-parser'),
 		bearerToken = require('express-bearer-token');
 
-const importRoute = require('./routes/import'),
-		exportRoute = require('./routes/export');
+const importRoute = require('./routes/import');
 
 const app = express();
 
@@ -14,7 +13,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bearerToken());
 
-app.use('/import', importRoute);
-app.use('/export', exportRoute);
+app.use('/', importRoute);
 
 module.exports = app;

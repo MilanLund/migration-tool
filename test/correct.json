@@ -3,23 +3,19 @@
        {  
           "item":{  
              "name":"Management API test post 1",
-             "id":null,
              "type":{  
-                "codename":"simple_type",
-                "id":null
+                "codename":"simple_type"
              },
              "sitemap_locations":[  
                 {  
-                   "codename":"sample_sitemap_grand_child",
-                   "id":null
+                   "codename":"sample_sitemap_grand_child"
                 }
              ]
           },
           "variants":[  
              {  
                 "language":{  
-                   "codename":"Czech",
-                   "id":null
+                   "codename":"Czech"
                 },
                 "elements":{  
                    "simple_text":"Management API testovací článek 1",
@@ -28,8 +24,7 @@
              },
              {  
                 "language":{  
-                   "codename":"default",
-                   "id":null
+                   "codename":"default"
                 },
                 "elements":{  
                    "simple_text":"Management API test post 1",
@@ -37,6 +32,39 @@
                 }
              }
           ]
-       }
+		 },
+		 {  
+			"item":{  
+				"name":"Management API test post 2",
+				"type":{  
+					"codename":"simple_type"
+				},
+				"sitemap_locations":[  
+					{  
+						"codename":"sample_sitemap_grand_child"
+					}
+				]
+			},
+			"variants":[  
+				{  
+					"language":{  
+						"codename":"Czech"
+					},
+					"elements":{  
+						"simple_text":"Management API testovací článek 2",
+						"simple_number":20
+					}
+				},
+				{  
+					"language":{  
+						"codename":"default"
+					},
+					"elements":{  
+						"simple_text":"Management API test post 2",
+						"simple_number":10
+					}
+				}
+			]
+		}
     ]
  }

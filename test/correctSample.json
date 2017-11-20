@@ -1,0 +1,59 @@
+{  
+	"items":[  
+		{  
+			"item":{  
+				"name":"Management API test post 1",
+				"type":{  
+					"codename":"sample_type"
+				},
+				"sitemap_locations":[  
+					{  
+						"codename":"sample_sitemap_grand_child"
+					}
+				]
+			},
+			"variants":[  
+				{  
+					"language":{  
+						"codename":"default"
+					},
+					"elements":{
+						"sample_text": "Sample Text",
+						"sample_rich_text": "<p>I am a Rich text</p>",
+						"sample_number": 42,
+						"sample_multiple_choice": [
+							{
+								 "name": "Option 2",
+								 "codename": "option_2"
+							},
+							{
+								 "name": "Option 3",
+								 "codename": "option_3"
+							}
+					  	],
+						"sample_date___time": "2017-11-30T00:00:00Z",
+						"sample_assest": [
+							{
+								 "name": "23559948_10214793093329055_448401986009199664_n.jpg",
+								 "type": "image/jpeg",
+								 "size": 48276,
+								 "description": null,
+								 "url": "https://assets.kenticocloud.com:443/55ae5b05-fdbd-433f-95d3-65b73d265823/cdc1a678-4b53-466e-93e0-1956bd652518/23559948_10214793093329055_448401986009199664_n.jpg"
+							}
+					  ],
+						"sample_modular_content": [
+							"second_item"
+					  ],
+						"sample_taxonomy_group": [
+							{
+								 "name": "Term 1",
+								 "codename": "term_1"
+							}
+					  ],
+						"sample_url_slug": "first-item"
+				  }
+				}
+			]
+		}
+	]
+}

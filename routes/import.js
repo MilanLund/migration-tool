@@ -1,36 +1,38 @@
 const express = require('express'),
 		router = express.Router(),
 		requestPromise = require('request-promise');
-		helper = require('../controllers/import/helper');
+		request = require('../import/request'),
+		response = require('../import/response'),
+		validation = require('../import/validation');
 
 router.post('/:projectId', (req, res, next) => {
 
 	// First level - Validate Project ID and API key in the authorization header
-	requestPromise(helper.getRequestAPIKeyProjectIDOptions(req))
-		.then((response) => {		
+	requestPromise(request.getAPIKeyProjectIDOptions(req))
+		.then((data) => {		
 
-			// Second level - Validate content types
-			requestPromise(helper.getRequestContentTypesOptions(req))
-				.then((contentTypes) => {
-					var isDataValid = helper.isImportDataValid(req.body, contentTypes);
+			// Second level - Validate content models
+			requestPromise(request.getContentModelsOptions(req))
+				.then((contentModels) => {
+					let isDataValid = validation.isImportDataValid(req.body, contentModels);
 
 					if (isDataValid.isDataValid) {
-						helper.sendResponse(res, 200, contentTypes);
+						response.send(res, 200, 'Import data validation ok. Ready for the import process.');
 					} else {
-						helper.sendResponse(res, 400, isDataValid.message);
+						response.send(res, 400, isDataValid.message);
 					}
 				})
 				/*.catch((error) => {
-					helper.sendResponse(res, error.statusCode, error.error.message);
+					helper.send(res, error.statusCode, error.error.message);
 				});*/
 		})
 		.catch((error) => {
-			helper.sendResponse(res, error.statusCode, error.error.message);
+			response.send(res, error.statusCode, error.error.message);
 		});	
 });
 
 router.use('/:projectId', (req, res, next) => {
-	helper.sendResponse(res, 405, 'The endpoint supports only the POST request.');
+	response.send(res, 405, 'The endpoint supports only the POST request.');
 });
 
 module.exports = router;

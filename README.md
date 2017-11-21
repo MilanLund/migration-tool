@@ -26,14 +26,14 @@ https://migration-tool-kentico-cloud.herokuapp.com/<YOUR_PROJECT_ID>
 ```sh
 npm install
 ```
-Then the endpoit is available on th following address:
+Then the endpoit is available on the following address:
 ```sh
 http://localhost:5000/<YOUR_PROJECT_ID>
 ```
 
 ### Making requests
 
-The best way how to access the endpoint is using [Postman](https://www.getpostman.com/apps). The endpoint accepts requests with following attributes: 
+The best way how to access the endpoint is using [Postman](https://www.getpostman.com/apps). The endpoint accepts requests with the following attributes: 
 
 - The request URL must contain your Project ID.
 ```sh

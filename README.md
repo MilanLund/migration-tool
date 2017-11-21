@@ -89,7 +89,9 @@ To be able to import data sucessfully to Kentico Cloud you need to follow the pr
 
 - The top-level property `items` encapsulates all data. Is type of array and each item of the array represents a Kentico Cloud content item and it's language variants. Is required.
 - Each content item consists of the `item` and `variants` properies.
-    - The `item` property stores general data about the content item. Is required.
-        - The `name` property represents name on the content item. Is required.
-    - The `variants` property stores specific data for each lanfuage variant in the project. Is required.
+    - The `item` property stores general data about the content item. Object and is required.
+        - The `name` property represents name on the content item. String and is required.
+        - The `type.codename` property represents codename of a content model and must fit one of the content models specified in your Kentico Cloud project. String and is required.
+        - The `sitemap_locations` property represents codenames of sitemap locations to which the content item should be assigned. The codenames must fit the ones that are specified in your Kentico Cloud project. Array and is optional.
+    - The `variants` property stores specific data for each language variant in the project. Array and is required.
 

@@ -49,7 +49,7 @@ Authorization: Bearer <YOUR_API_KEY>
 Content-type: application/json
 ```
 
-### Request body structure
+### Structure of the request body 
 
 To be able to import data sucessfully to Kentico Cloud you need to follow the predefined structure of the JSON object and fit your data in the structure. Example: 
 ```json
@@ -108,3 +108,16 @@ The `elements` property maps your data to content elements of the chosen content
 - Data type **String** in the datetime format ("2017-11-16T11:19:57.3768443Z") is accepted by the **Date & time** content element.
 
 To fully understand the sturucture of properies in the `elements` property (especially when it comes content elements that accept Array values) I recommend you to check the [Kentico Cloud documentation](https://developer.kenticocloud.com/reference#list-content-items) and try to make several list requests with use of the Delivery and Content Management APIs.
+
+## Under the hood
+
+Below you can find a brief description what the tool does under the hood:
+
+1. Checks whether the request body is not empty.
+2. Makes a request with use of the Content Management API to get project items. By this request the tool checks whether the provided Project ID and Content Management API key are valid.
+3. Makes a request with use of the Delivery API to get content models and their content elements.
+4. Validates whether the JSON object obtatined in the request body fits the required structure.
+5. Validates whether the JSON object obtatined in the request body fits the content models and their elements. 
+    - Validates existence of referenced content models.
+    - Validates existence and data types of properties in the `elements` property.
+6. If the previous steps are sucessfull the tool is ready to import the data. Please note that before the import process the tool checks existence only of content types and their content elements. It does not check existence of other referenced information i.e. language variants, taxonomy groups, sitemap locations. This will be probably checked during the import process.

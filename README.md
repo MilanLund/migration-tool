@@ -90,13 +90,13 @@ To be able to import data sucessfully to Kentico Cloud you need to follow the pr
 - The top-level property `items` encapsulates all data. Is type of array and each item of the array represents a Kentico Cloud content item and it's language variants. Is required.
 - Each content item consists of the `item` and `variants` properies.
     - The `item` property stores general data about the content item. Object and is required.
-        - The `name` property represents name on the content item. String and is required.
+        - The `name` property represents name of the content item. String and is required.
         - The `type.codename` property represents codename of a content model and must fit one of the content models specified in your Kentico Cloud project. String and is required.
         - The `sitemap_locations` property represents codenames of sitemap locations to which the content item should be assigned. The codenames must fit the ones that are specified in your Kentico Cloud project. Array and is optional.
     - The `variants` property stores specific data for each language variant in the project. Each language variant is represented by an array item. Array and is required.
         - The `language.codename` property represents codename of a language variant to which the data should be assigned. The codename must fit one language variant in your Kentico Cloud project. String and is required.
         - The `elements` property represents data that should get imported in the Kentico Cloud project. Object and is required.
-            - Child properties of the `elements` object represent content elements of the content model specified in the `item.type.codename` property. Key of each property represents codename of a content element in the content model. Value of the property is your data you want to import. Make sure the values are of a correct data type relevant to mapped content element type. 
+            - Child properties of the `elements` object represent content elements of the content model specified in the `item.type.codename` property. Key of each property represents codename of a content element in the content model. Value of the property is your data you attempt to import. Make sure the values are of a correct data type relevant to mapped content element type. 
             
 #### Content element types
 
@@ -107,11 +107,11 @@ The `elements` property maps your data to content elements of the chosen content
 - Data type **Array** is accepted by the **Multiple choice, Modular content, Taxonomy** content elements.
 - Data type **String in the datetime format** ("2017-11-16T11:19:57.3768443Z") is accepted by the **Date & time** content element.
 
-To fully understand the sturucture of properies in the `elements` property (especially when it comes content elements that accept Array values) I recommend you to check the [Kentico Cloud documentation](https://developer.kenticocloud.com/reference#list-content-items) and try to make several list requests with use of the Delivery and Content Management APIs.
+To fully understand the sturucture of properies in the `elements` property (especially when it comes content elements that accept Array values) I recommend you to check the [Kentico Cloud documentation](https://developer.kenticocloud.com/reference#list-content-items) Try to make several list requests with use of the Delivery and Content Management APIs and see their responses.
 
 ## Under the hood
 
-Below you can find a brief description what the tool does under the hood:
+Below you can find a brief description of what the tool does under the hood:
 
 1. Checks whether the request body is not empty.
 2. Makes a request with use of the Content Management API to get project items. By this request the tool checks whether the provided Project ID and Content Management API key are valid.

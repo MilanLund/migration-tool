@@ -15,14 +15,14 @@ Planned features are:
 There are 2 ways on how to run the tool.
 
 1. Use an endpoint on a testing Heroku instance:
-```sh
-https://migration-tool-kentico-cloud.herokuapp.com/[projectId]
-```
+  ```sh
+  https://migration-tool-kentico-cloud.herokuapp.com/[projectId]
+  ```
 2. Obtain the code and rund the tool locally on your machine. It is a Node.js app. Make sure you have Node.js installed and run the following command in the tool directory.
-```sh
-npm install
-```
-Then the endpoit is available on th following address:
-```sh
-http://localhost:5000/[projectId]
-```
+  ```sh
+  npm install
+  ```
+  Then the endpoit is available on th following address:
+  ```sh
+  http://localhost:5000/[projectId]
+  ```

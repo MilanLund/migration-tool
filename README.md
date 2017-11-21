@@ -66,7 +66,7 @@ To be able to import data sucessfully to Kentico Cloud you need to follow the pr
         },
         "variants": [{
                 "language": {
-                    "codename": "Czech"
+                    "codename": "czech"
                 },
                 "elements": {
                     "simple_text": "Management API testovací článek 1",
@@ -86,4 +86,10 @@ To be able to import data sucessfully to Kentico Cloud you need to follow the pr
     }]
 }
 ```
+
+- The top-level property `items` encapsulates all data. Is type of array and each item of the array represents a Kentico Cloud content item and it's language variants. Is required.
+- Each content item consists of the `item` and `variants` properies.
+    - The `item` property stores general data about the content item. Is required.
+        - The `name` property represents name on the content item. Is required.
+    - The `variants` property stores specific data for each lanfuage variant in the project. Is required.
 

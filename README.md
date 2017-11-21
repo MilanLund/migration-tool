@@ -107,3 +107,4 @@ The `elements` property maps your data to content elements of the chosen content
 - Data type **Array** is accepted by the **Multiple choice, Modular content, Taxonomy** content elements.
 - Data type **String** in the datetime format ("2017-11-16T11:19:57.3768443Z") is accepted by the **Date & time** content element.
 
+To fully understand the sturucture of properies in the `elements` property (especially when it comes content elements that accept Array values) I recommend you to check the [Kentico Cloud documentation](https://developer.kenticocloud.com/reference#list-content-items) and try to make several list requests with use of the Delivery and Content Management APIs.

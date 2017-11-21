@@ -10,7 +10,6 @@ function isImportDataValid(importData, contentModels) {
 	if (isDataValid.isDataValid) {
 		isDataValid = models.importDataFitContentModels(importData, contentModels);
 	}
-
 	return isDataValid;	
 }
 

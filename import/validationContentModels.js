@@ -87,7 +87,6 @@ function checkContentElementType(dataElement, modelElement) {
 		dataTypeData = 'number';
 	} else if (dataElement instanceof Array) {
 		dataTypeData = 'array';
-		console.log('asd');
 	} else if (typeof dataElement === 'object') {
 		dataTypeData = 'object';
 	}  

@@ -93,5 +93,17 @@ To be able to import data sucessfully to Kentico Cloud you need to follow the pr
         - The `name` property represents name on the content item. String and is required.
         - The `type.codename` property represents codename of a content model and must fit one of the content models specified in your Kentico Cloud project. String and is required.
         - The `sitemap_locations` property represents codenames of sitemap locations to which the content item should be assigned. The codenames must fit the ones that are specified in your Kentico Cloud project. Array and is optional.
-    - The `variants` property stores specific data for each language variant in the project. Array and is required.
+    - The `variants` property stores specific data for each language variant in the project. Each language variant is represented by an array item. Array and is required.
+        - The `language.codename` property represents codename of a language variant to which the data should be assigned. The codename must fit one language variant in your Kentico Cloud project. String and is required.
+        - The `elements` property represents data that should get imported in the Kentico Cloud project. Object and is required.
+            - Child properties of the `elements` object represent content elements of the content model specified in the `item.type.codename` property. Key of each property represents codename of a content element in the content model. Value of the property is your data you want to import. Make sure the values are of a correct data type relevant to mapped content element type. 
+            
+#### Content element types
+
+The `elements` property maps your data to content elements of the chosen content model in the `item.type.codename` property. Each content element accepts a different data type:
+
+- Data type **String** is accepted by the **Text, Rich text, Url slug** content elements.
+- Data type **Number** is accepted by the **Number content** element.
+- Data type **Array** is accepted by the **Multiple choice, Modular content, Taxonomy** content elements.
+- Data type **String** in the datetime format ("2017-11-16T11:19:57.3768443Z") is accepted by the **Date & time** content element.
 

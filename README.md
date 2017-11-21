@@ -30,6 +30,7 @@ Then the endpoit is available on th following address:
 ```sh
 http://localhost:5000/<YOUR_PROJECT_ID>
 ```
+
 ### Making requests
 
 The best way how to access the endpoint is using [Postman](https://www.getpostman.com/apps). The endpoint accepts requests with following attributes: 
@@ -47,3 +48,42 @@ Authorization: Bearer <YOUR_API_KEY>
 ```sh
 Content-type: application/json
 ```
+
+### Request body structure
+
+To be able to import data sucessfully to Kentico Cloud you need to follow the predefined structure of the JSON object and fit your data in the structure. Example: 
+```json
+{
+    "items": [{
+        "item": {
+            "name": "Management API test post 1",
+            "type": {
+                "codename": "simple_type"
+            },
+            "sitemap_locations": [{
+                "codename": "sample_sitemap_grand_child"
+            }]
+        },
+        "variants": [{
+                "language": {
+                    "codename": "Czech"
+                },
+                "elements": {
+                    "simple_text": "Management API testovací článek 1",
+                    "simple_number": 20
+                }
+            },
+            {
+                "language": {
+                    "codename": "default"
+                },
+                "elements": {
+                    "simple_text": "Management API test post 1",
+                    "simple_number": 10
+                }
+            }
+        ]
+    }]
+}
+```
+

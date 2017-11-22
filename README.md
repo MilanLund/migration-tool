@@ -133,4 +133,4 @@ When the phase of importing data starts, the tool makes requests to Kentico Clou
 - If you import 1 content item with 2 language variants, 3 requests are made.
 - If you import 2 content item with 2 language variants, 6 requests are made.  
 
-If the process fails the tool sends more requests to delete already imported content items. One request for each content item. There is no need to send additional delete requests for language variants. This is done to preserve state of the Kentico Cloud project before the import process has had started.
+If the process fails the tool sends more requests to delete already imported content items. One request for each content item. There is no need to send additional delete requests for language variants. This is done to preserve state of the Kentico Cloud project before the import process has had started. This is important to know because this could make you exceed the amount of Content API calls in your Kentico Cloud pricing variant. I recommend you to test the import process on a smaller amount of content items.

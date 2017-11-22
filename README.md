@@ -26,7 +26,7 @@ https://migration-tool-kentico-cloud.herokuapp.com/<YOUR_PROJECT_ID>
 ```sh
 npm install
 ```
-Then the endpoit is available on the following address:
+Then the endpoint is available on the following address:
 ```sh
 http://localhost:5000/<YOUR_PROJECT_ID>
 ```

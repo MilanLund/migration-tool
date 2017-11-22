@@ -8,6 +8,7 @@ function isImportDataValid(importData, contentModels) {
 
 	// Check whether import data fit referenced content models
 	if (isDataValid.isDataValid) {
+		console.log('Import data structure ok...');
 		isDataValid = models.importDataFitContentModels(importData, contentModels);
 	}
 	return isDataValid;	

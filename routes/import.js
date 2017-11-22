@@ -1,6 +1,6 @@
 const express = require('express'),
 		router = express.Router(),
-		requestPromise = require('request-promise');
+		requestPromise = require('request-promise'),
 		request = require('../import/request'),
 		response = require('../import/response'),
 		validation = require('../import/validation'),
@@ -29,8 +29,10 @@ router.post('/:projectId', (req, res, next) => {
 					let isDataValid = validation.isImportDataValid(req.body, contentModels);
 
 					if (isDataValid.isDataValid) {
-						importData.importData(req.body);
-						response.send(res, 200, 'Import data validation ok. Ready for the import process.');
+						console.log('Import data and content models comparision ok...');
+						console.log('Starting import...');
+						importData.importData(req, res);
+						//response.send(res, 200, 'Import data validation ok. Ready for the import process.');
 					} else {
 						response.send(res, 400, isDataValid.message);
 					}
@@ -40,6 +42,7 @@ router.post('/:projectId', (req, res, next) => {
 				});*/
 		})
 		.catch((error) => {
+			console.log('c');
 			response.send(res, error.statusCode, error.error.message);
 		});	
 });

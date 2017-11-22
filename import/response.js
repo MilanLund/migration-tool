@@ -45,10 +45,16 @@ function setValidationFailedContentElementDataType(contentElement, dataTypeModel
 	return isDataValid;
 }
 
-function send(res, code, message) {
-	res.status(code).send({
+function send(res, code, message, validationErrors) {
+	var response = {
 		message: message
-	});
+	};
+
+	if (typeof validationErrors !== 'undefined') {
+		response.validation_errors = validationErrors
+	}
+
+	res.status(code).send(response);
 }
 
 module.exports = {

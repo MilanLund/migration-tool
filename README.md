@@ -5,11 +5,11 @@ Purpose of this tool is to migrate data from various sources to Kentico Cloud. M
 - Accept POST requests via endpoint.
 - Accept migration data in the JSON format in the body of the request.
 - Validate structure and data types of the migration data.
+- Import migration data in a Kentico Cloud project.
+- Delete migrated data from a Kentico Cloud project in case the import process failed.
 
 Planned features are:
 
-- Import migration data in a Kentico Cloud project.
-- Delete migrated data from a Kentico Cloud project.
 - GUI
 
 ## Usage
@@ -121,3 +121,16 @@ Below you can find a brief description of what the tool does under the hood:
     - Validates existence of referenced content models.
     - Validates existence and data types of properties in the `elements` property.
 6. If the previous steps are sucessfull the tool is ready to import the data. Please note that before the import process the tool checks existence only of content types and their content elements. It does not check existence of other referenced information i.e. language variants, taxonomy groups, sitemap locations. This will be probably checked during the import process.
+7. Imports data in the Kentico Cloud project. In case language variants, taxonomy groups, sitemap locations or other imported information do not exist in the Kentico Cloud project, the import process will fail and content items imported during the process get deleted. 
+8. The whole process finishes in one of the following states:
+	- Data are sucessfully imported. Array of objects with id and codename of imported content items is sent in the response in the JSON format.
+	- The process fails. Response with a relevant message is sent in the response.
+
+## Please note
+
+When the phase of importing data starts, the tool makes requests to Kentico Cloud. One request for each content items plus one request for each language variant of a content item. Examples:
+- If you import 1 content item with 1 language variant, 2 requests are made. 
+- If you import 1 content item with 2 language variants, 2 requests are made.
+- If you import 2 content item with 2 language variants, 4 requests are made.  
+
+If the process fails the tool sends more requests to delete already imported content items. One request for each content item. There is no need to send additional delete requests for language variants. This is done to preserve state of the Kentico Cloud project before the import process has had started.

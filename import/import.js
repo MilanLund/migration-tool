@@ -1,77 +1,93 @@
+/* eslint-disable no-console */
 const request = require('./request'),
-		Bluebird = require('bluebird'),
-		response = require('./response'),
-		requestPromise = require('request-promise'),
-		util = require('util');
+	Promise = require('bluebird'),
+	response = require('./response'),
+	requestPromise = require('request-promise');
 
+// Makes the whole import process happen
 function importData (req, res) {
-	var addOptions = [],
+	let addOptions = [],
 		upsertOptions = [],
-		item,
 		variant,
 		elem,
 		lang,
 		importedItems = [];
 
+	// Iterate content items in import data
 	for (var i = 0; i < req.body.items.length; i++) {
-		item = req.body.items[i].item;
-		addOptions.push(request.getAddOptions(req, item));
+		// Fill the array with request options that add a new content item
+		addOptions.push(request.getAddOptions(req, req.body.items[i].item));
 	}
 	
-	Bluebird.mapSeries(addOptions, (options, index) => {
+	// Iterate serially add request options
+	Promise.mapSeries(addOptions, (options, index) => {
+		// Import a new content item in a Kentico Cloud project
 		return requestPromise(options).then((data) => {
 			console.log('Item "' + data.name + '" imported.');
 			
 			upsertOptions = [];
+
+			// Store identifiers of the new content item
 			importedItems.push({
 				id: data.id,
 				codename: data.codename
 			});
 	
+			// Iterate content variants in the content item
 			for (var j = 0; j < req.body.items[index].variants.length; j++) {
 				variant = req.body.items[index].variants[j];
 				elem = { elements: variant.elements };
 				lang = variant.language.codename;
+				// Fill the array with request options that add a new language variants for the content item 
 				upsertOptions.push(request.getUpsertOptions(req, elem, data.id, lang));
 			}
 
-			return Bluebird.mapSeries(upsertOptions, (options, index) => {
+			// Iterate serially language request options
+			return Promise.mapSeries(upsertOptions, (options) => {
+				// Import a new language variant in the content item
 				return requestPromise(options)
+					.catch((error) => {
+						throw error;
+					});			
+			})
 				.catch((error) => {
 					throw error;
-				});			
-			})
-			.catch((error) => {
-				throw error;
-			});
+				});
 		}).catch((error) => {
-			throw error
+			throw error;
 		});
 	})
-	.then((data) => {
-		console.log('Import successful.');
-		response.send(res, 200, importedItems); 
-	})
-	.catch((error) => { 
-		console.log('Import failed.');
-		console.log('Starting deleting already imported items...');
-		var deleteOptions = [];
+		.then(() => {
+			console.log('Import successful.');
+			// In case of a successful import response with identifiers of imported content items
+			response.send(res, 200, importedItems); 
+		})
+		.catch((error) => { 
+			console.log('Import failed.');
+			console.log('Deleting already imported items...');
+			var deleteOptions = [];
 
-		for (var i = 0; i < importedItems.length; i++) {
-			deleteOptions.push(request.getDeleteOptions(req, importedItems[i].id));
-		}
+			// In case of unsuccessful import delete already imported content items
+
+			// Iterate already imported items
+			for (var i = 0; i < importedItems.length; i++) {
+				// Fill the array with request options that delete content items
+				deleteOptions.push(request.getDeleteOptions(req, importedItems[i].id));
+			}
 		
-		return Bluebird.map(deleteOptions, (options, index) => {
-			return requestPromise(options)
-			.catch((error) => {
-				throw error;
-			});
-		}, {concurrency: 2})
-		.then((data) => {
-			console.log('Deletion successful.');
-			response.send(res, error.statusCode, error.error.message, error.error.validation_errors); 
+			// Iterate delete request options, 2 requests in parallel
+			return Promise.map(deleteOptions, (options) => {
+				// Delete a content item from a Kentico Cloud project
+				return requestPromise(options)
+					.catch((error) => {
+						throw error;
+					});
+			}, {concurrency: 2})
+				.then(() => {
+					console.log('Successfully deleted.');
+					response.send(res, error.statusCode, error.error.message, error.error.validation_errors); 
+				});
 		});
-	});
 }
 
 module.exports = {

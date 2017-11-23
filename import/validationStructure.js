@@ -1,47 +1,53 @@
+/* eslint-disable no-console */
 const response = require('./response');
 
+// Defines what properties of import data should be validated
 function isImportDataStructureValid(importData) {
 	return checkProperties(importData.items, [{
-			key: 'item',
+		key: 'item',
+		type: 'object',
+		compulsory: true
+	}, {
+		key: 'variants',
+		type: 'array',
+		compulsory: true,
+		childKeys: [{
+			key: 'language.codename',
+			type: 'string',
+			compulsory: true
+		}, {
+			key: 'elements',
 			type: 'object',
 			compulsory: true
-		}, {
-			key: 'variants',
-			type: 'array',
-			compulsory: true,
-			childKeys: [{
-					key: 'language.codename',
-					type: 'string',
-					compulsory: true
-				}, {
-					key: 'elements',
-					type: 'object',
-					compulsory: true
-				}
-			]
-		}, {
-			key: 'item.name',
-			type: 'string',
-			compulsory: true
-		}, {
-			key: 'item.type.codename',
-			type: 'string',
-			compulsory: true
-		}, {
-			key: 'item.sitemap_locations',
-			type: 'array',
-			compulsory: false
 		}
+		]
+	}, {
+		key: 'item.name',
+		type: 'string',
+		compulsory: true
+	}, {
+		key: 'item.type.codename',
+		type: 'string',
+		compulsory: true
+	}, {
+		key: 'item.sitemap_locations',
+		type: 'array',
+		compulsory: false
+	}
 	]);
 }
 
 function checkProperties(importData, settings, isParentIteration, parentLevelIndex) {
+	// Initialize response
 	let isDataValid = response.getPositiveResponse();
 
-	for (var i = 0; i < importData.length; i++) {
-		for (var j = 0; j < settings.length; j++) {
+	// Iterates content items in imported data
+	for (let i = 0; i < importData.length; i++) {
+		// Iterates settings of what properties of imported data should be validated
+		for (let j = 0; j < settings.length; j++) {
 			// Check if is not in recursion call
 			if (!isParentIteration) {
+				// Set a index of currently iterated content item for a response purpose
 				parentLevelIndex = i;
 			}
 
@@ -74,11 +80,12 @@ function checkProperties(importData, settings, isParentIteration, parentLevelInd
 	return isDataValid;
 }
 
+// Check whether a passed object contains specified properties 
 function itemHasProperty(data, settings, index) {
 	let keys = settings.key.split('.'),
 		isDataValid = response.getPositiveResponse();
 
-	for(var i = 0; i < keys.length; i++) {
+	for(let i = 0; i < keys.length; i++) {
 		if (data.hasOwnProperty([keys[i]])) {
 			data = data[keys[i]];
 		} else {
@@ -89,6 +96,7 @@ function itemHasProperty(data, settings, index) {
 	return isDataValid;
 }
 
+// Check whether properties are of a correct data type 
 function itemIsOfTypeAndNotEmpty(data, settings, index) {
 	let key = settings.key,
 		type = settings.type,
@@ -97,7 +105,7 @@ function itemIsOfTypeAndNotEmpty(data, settings, index) {
 		isDataValid = response.getPositiveResponse(),
 		property;
 
-	for (var i = 0; i < keys.length; i++) {
+	for (let i = 0; i < keys.length; i++) {
 		data = data[keys[i]];
 		property = keys[i];
 	}

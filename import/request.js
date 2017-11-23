@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+
+// Options for getting all content items in a Kentico Cloud project 
 function getAPIKeyProjectIDOptions(req) {
 	return {
 		method: 'GET',
@@ -9,6 +12,7 @@ function getAPIKeyProjectIDOptions(req) {
 	};
 }
 
+// Options for getting all content models in a Kentico Cloud project
 function getContentModelsOptions(req) {
 	return {
 		method: 'GET',
@@ -17,6 +21,7 @@ function getContentModelsOptions(req) {
 	};
 }
 
+// Options for getting adding a content item in a Kentico Cloud project 
 function getAddOptions(req, data) {
 	return {
 		method: 'POST',
@@ -29,6 +34,7 @@ function getAddOptions(req, data) {
 	};
 }
 
+// Options for getting adding a language variant to a content item in a Kentico Cloud project
 function getUpsertOptions(req, data, itemId, languageVariant) {
 	return {
 		method: 'PUT',
@@ -41,6 +47,7 @@ function getUpsertOptions(req, data, itemId, languageVariant) {
 	};
 }
 
+// Options for deleting a content item from a Kentico Cloud project 
 function getDeleteOptions(req, itemId) {
 	return {
 		method: 'DELETE',
@@ -51,7 +58,6 @@ function getDeleteOptions(req, itemId) {
 		json: true
 	};
 }
-
 
 module.exports = {
 	getAPIKeyProjectIDOptions,

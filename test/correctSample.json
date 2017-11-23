@@ -32,17 +32,11 @@
 							}
 					  	],
 						"sample_date___time": "2017-11-30T00:00:00Z",
-						"sample_assest": [
-							{
-								 "name": "23559948_10214793093329055_448401986009199664_n.jpg",
-								 "type": "image/jpeg",
-								 "size": 48276,
-								 "description": null,
-								 "url": "https://assets.kenticocloud.com:443/55ae5b05-fdbd-433f-95d3-65b73d265823/cdc1a678-4b53-466e-93e0-1956bd652518/23559948_10214793093329055_448401986009199664_n.jpg"
-							}
-					  ],
 						"sample_modular_content": [
-							"second_item"
+							{
+								"codename": "home"
+							}
+							
 					  ],
 						"sample_taxonomy_group": [
 							{

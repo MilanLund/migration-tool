@@ -1,10 +1,14 @@
+/* eslint-disable no-console */
+
+// Constructor for a positive response
 function getPositiveResponse() {
 	return { 
 		isDataValid: true,
 		message: 'Data is valid'
-	}
+	};
 }
 
+// Sets a validation response in case content item validation fails
 function setValidationFailed(property, key, keysLength, errorMessage, index) {
 	let isDataValid = {};
 	
@@ -18,6 +22,7 @@ function setValidationFailed(property, key, keysLength, errorMessage, index) {
 	return isDataValid;
 }
 
+// Sets a validation response in case content model does not exist in the Kentico Cloud project
 function setValidationFailedContentModels(contentModel, index) {
 	let isDataValid = {};
 
@@ -27,6 +32,7 @@ function setValidationFailedContentModels(contentModel, index) {
 	return isDataValid;
 }
 
+// Sets a validation response in case content element does not exist in the content type
 function setValidationFailedContentElementExists(contentElement, contentModel, index) {
 	let isDataValid = {};
 
@@ -36,6 +42,7 @@ function setValidationFailedContentElementExists(contentElement, contentModel, i
 	return isDataValid;
 }
 
+// Sets a validation response in case content element is of incorrect data type
 function setValidationFailedContentElementDataType(contentElement, dataTypeModel, dataTypeData, index) {
 	let isDataValid = {};
 
@@ -45,13 +52,14 @@ function setValidationFailedContentElementDataType(contentElement, dataTypeModel
 	return isDataValid;
 }
 
+// Wrapper for sending responses
 function send(res, code, message, validationErrors) {
-	var response = {
+	let response = {
 		message: message
 	};
 
 	if (typeof validationErrors !== 'undefined') {
-		response.validation_errors = validationErrors
+		response.validation_errors = validationErrors;
 	}
 
 	res.status(code).send(response);

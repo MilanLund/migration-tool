@@ -9,6 +9,12 @@ const express = require('express'),
 	validation = require('../import/validation'),
 	importData = require('../import/import');
 
+// Tool UI
+router.get('/', (req, res) => {
+	res.render('app');
+});
+
+// Import endpoint
 router.post('/:projectId', (req, res) => {
 	// If no body sent
 	if (Object.keys(req.body).length === 0 && req.body.constructor === Object) {

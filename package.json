@@ -20,9 +20,18 @@
     "request": "^2.83.0",
     "request-promise": "^4.2.2"
   },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-less": "^3.3.2",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0"
+  },
   "main": "app.js",
   "keywords": [],
   "author": "Milan Lund",
   "license": "MIT",
-  "description": "Exports/imports data from/to Kentico Cloud projects."
+  "description": "Imports data to a Kentico Cloud project."
 }

@@ -36,7 +36,8 @@ gulp.task('js', () => {
         './ui/assets/js/src/vendor/codemirror.min.js',
         './ui/assets/js/src/vendor/codemirror-js.min.js',
         './ui/assets/js/src/vendor/beautify.js',
-        './ui/assets/js/src/custom/code-editor.js'
+        './ui/assets/js/src/custom/code-editor.js',
+        './ui/assets/js/src/custom/import.js'
         ])
         .pipe(concat('app.js'))
         .pipe(gulp.dest('./ui/assets/js/'))

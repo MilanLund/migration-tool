@@ -12,20 +12,20 @@ block content
     .layout
         section.layout__side
             .layout__side-content
-                .form
+                form.form#importForm
                     h2.form__heading Project settings
                     .form__row
                         label.form__label(for='project') Project ID
-                        input.form__input#project(name='project')
+                        input.form__input#project(name='project', required)
                     .form__row
                         label.form__label(for='cmkey') Content Management API key
-                        input.form__input#cmkey(name='cmkey')
+                        input.form__input#cmkey(name='cmkey', required)
                     .form__row
                         button.form__button#import Import data
         section.layout__main
             .layout__main-content
                 .layout__section.layout__section--70
-                    .editor
+                    .editor#code-editor
                         h2.editor__heading Import data
                         .editor__main
                             .editor__code

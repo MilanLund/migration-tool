@@ -1,3 +1,5 @@
+var editorWrapper;
+
 (function() {
     var codeEditor = {
         init: function (id, mode) {
@@ -20,7 +22,6 @@
         }
     };
 
-    console.log('sad');
-    codeEditor.init('import-data', 'application/json');
+    editorWrapper = codeEditor.init('import-data', 'application/json');
 })();
 

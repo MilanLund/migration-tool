@@ -7,16 +7,58 @@ Purpose of this tool is to migrate data from various sources to Kentico Cloud. M
 - Validate structure and data types of the migration data.
 - Import migration data in a Kentico Cloud project.
 - Delete migrated data from a Kentico Cloud project in case the import process failed.
+- GUI
 
 Planned features are:
 
-- GUI
+- Support for CSV format as import data.
+
 
 ## Usage
 
+There are 2 ways on how to run the tool:
+
+- [GUI](#gui)
+- [Endpoint interface](#endpoint-interface)
+
+Both the GUI and the Endpoint interface require you to acknowledge [structure of the import data](#structure-of-the-request-body).
+
+## GUI
+
 ### Setup
 
-There are 2 ways on how to run the tool.
+There are 2 ways how to access the GUI:
+
+1. Use the GUI on a testing Heroku instance:
+```sh
+https://migration-tool-kentico-cloud.herokuapp.com/
+```
+2. Obtain the code and run the tool locally on your machine. It is a Node.js app. Make sure you have Node.js installed and run the following command in the tool directory.
+```sh
+npm install
+```
+Then the GUI is available on the following address:
+```sh
+http://localhost:5000/
+```
+
+### Making requests
+
+[[https://github.com/MilanLund/migration-tool/tree/master/ui/assets/img/migrationtool.png|alt=GUI]]
+
+There 3 main areas in the GUI>
+
+- **Project settings** -  Required fields for Project ID and Content Management ID.
+- **Import data** - Required field which should contain import data in with the [following structure](#structure-of-the-request-body).
+- **Logs** - Here you get information about an ongoing import.
+
+To make the import process start you need to fill in all required fields and hit the **Import data** button in the  **Project settings** area.
+
+## Endpoint interface
+
+### Setup
+
+There are 2 ways how to access the endpoint:
 
 1. Use an endpoint on a testing Heroku instance:
 ```sh
@@ -49,7 +91,7 @@ Authorization: Bearer <YOUR_API_KEY>
 Content-type: application/json
 ```
 
-### Structure of the request body 
+## Structure of the request body 
 
 To be able to import data sucessfully to Kentico Cloud you need to follow the predefined structure of the JSON object and fit your data in the structure. Example: 
 ```json
@@ -98,7 +140,7 @@ To be able to import data sucessfully to Kentico Cloud you need to follow the pr
         - The `elements` property represents data that should get imported in the Kentico Cloud project. Object and is required.
             - Child properties of the `elements` object represent content elements of the content model specified in the `item.type.codename` property. Key of each property represents codename of a content element in the content model. Value of the property is your data you attempt to import. Make sure the values are of a correct data type relevant to mapped content element type. 
             
-#### Content element types
+### Content element types
 
 The `elements` property maps your data to content elements of the chosen content model in the `item.type.codename` property. Each content element accepts a different data type:
 

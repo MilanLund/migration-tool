@@ -1,6 +1,6 @@
 const app = require('./app'),
 		debug = require('debug')('app:server'),
-		http = require('http');
+    http = require('http');
 
 //Normalize a port into a number, string, or false.
 var normalizePort = (val) => {
@@ -60,8 +60,11 @@ app.set('port', port);
 
 // Create HTTP server.
 var server = http.createServer(app);
+var io = require('socket.io')(server);
+app.set('socketio', io);
 
 // Listen on provided port, on all network interfaces.
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+

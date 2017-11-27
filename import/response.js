@@ -65,11 +65,21 @@ function send(res, code, message, validationErrors) {
 	res.status(code).send(response);
 }
 
+function sendLog(req, message) {
+	console.log(message);
+
+	if (typeof req.cookies.io !== 'undefined') {
+		var io = req.app.get('socketio');
+		io.to(req.cookies.io).emit('message', message);
+	}
+}
+
 module.exports = {
 	setValidationFailed,
 	setValidationFailedContentModels,
 	setValidationFailedContentElementExists,
 	setValidationFailedContentElementDataType,
 	getPositiveResponse,
-	send
+	send,
+	sendLog
 };

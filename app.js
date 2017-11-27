@@ -2,7 +2,8 @@ const express = require('express'),
 	path = require('path'),
 	logger = require('morgan'),
 	bodyParser = require('body-parser'),
-	bearerToken = require('express-bearer-token');
+	bearerToken = require('express-bearer-token'),
+	cookieParser= require('cookie-parser');
 
 const importRoute = require('./routes/import');
 
@@ -10,6 +11,7 @@ const app = express();
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bearerToken());
 app.use(express.static(path.join(__dirname, './ui/assets'), {

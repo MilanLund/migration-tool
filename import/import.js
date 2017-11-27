@@ -23,7 +23,8 @@ function importData (req, res) {
 	Promise.mapSeries(addOptions, (options, index) => {
 		// Import a new content item in a Kentico Cloud project
 		return requestPromise(options).then((data) => {
-			console.log('Item "' + data.name + '" imported.');
+			response.sendLog(req, 'Item "' + data.name + '...');
+			response.sendLog(req, '» Base data imported.');
 			
 			upsertOptions = [];
 
@@ -50,6 +51,9 @@ function importData (req, res) {
 						throw error;
 					});			
 			})
+				.then(() => {
+					response.sendLog(req, '» Language variants imported.');
+				})
 				.catch((error) => {
 					throw error;
 				});
@@ -63,8 +67,7 @@ function importData (req, res) {
 			response.send(res, 200, importedItems); 
 		})
 		.catch((error) => { 
-			console.log('Import failed.');
-			console.log('Deleting already imported items...');
+			response.sendLog(req, 'Import failed. Deleting already imported items...');
 			var deleteOptions = [];
 
 			// In case of unsuccessful import delete already imported content items
@@ -84,7 +87,7 @@ function importData (req, res) {
 					});
 			}, {concurrency: 2})
 				.then(() => {
-					console.log('Successfully deleted.');
+					response.sendLog(req, 'Successfully deleted.');
 					response.send(res, error.statusCode, error.error.message, error.error.validation_errors); 
 				});
 		});

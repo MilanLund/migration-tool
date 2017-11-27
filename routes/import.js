@@ -16,6 +16,7 @@ router.get('/', (req, res) => {
 
 // Import endpoint
 router.post('/:projectId', (req, res) => {
+	
 	// If no body sent
 	if (Object.keys(req.body).length === 0 && req.body.constructor === Object) {
 		response.send(res, 400, 'The request must contain import data in the JSON format sent as the request body.');
@@ -35,23 +36,21 @@ router.post('/:projectId', (req, res) => {
 			// Second level - Validate content models
 			requestPromise(request.getContentModelsOptions(req))
 				.then((contentModels) => {
-					let isDataValid = validation.isImportDataValid(req.body, contentModels);
+					let isDataValid = validation.isImportDataValid(req, req.body, contentModels);
 
 					if (isDataValid.isDataValid) {
-						console.log('Import data and content models comparision ok...');
-						console.log('Starting import...');
+						response.sendLog(req, 'Import data and content models comparision ok...');
+						response.sendLog(req, 'Starting import...');
 						importData.importData(req, res);
-						//response.send(res, 200, 'Import data validation ok. Ready for the import process.');
 					} else {
 						response.send(res, 400, isDataValid.message);
 					}
 				})
-				.catch((error) => {
+				/*.catch((error) => {
 					response.send(res, error.statusCode, error.error.message);
-				});
+				});*/
 		})
 		.catch((error) => {
-			console.log('c');
 			response.send(res, error.statusCode, error.error.message);
 		});	
 });

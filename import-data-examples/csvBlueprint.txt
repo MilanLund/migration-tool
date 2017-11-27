@@ -1,0 +1,47 @@
+name,type,sitemap_locations,czech/simple_text,czech/simple_number,czech/modular_content,default/simple_text,default/simple_number,default/modular_content
+Management API test post 1,simple_type,sample_sitemap_grand_child;sample_sitemap_child,Management API testovací článek 1,20,modular1;modular2,Management API test post 1,10,modular1;modular2
+
+
+{
+    "items": [{
+            "item": {
+                "name": "Management API test post 1",
+                "type": {
+                    "codename": "simple_type"
+                },
+                "sitemap_locations": [{
+                    "codename": "sample_sitemap_grand_child"
+                }]
+            },
+            "variants": [{
+                    "language": {
+                        "codename": "czech"
+                    },
+                    "elements": {
+                        "simple_text": "Management API testovací článek 1",
+                        "simple_number": 20,
+								"modular_content": [{
+									"codename": "modular1"
+								}, {
+									"codename": "modular2"
+								}]
+                    }
+                },
+                {
+                    "language": {
+                        "codename": "default"
+                    },
+                    "elements": {
+                        "simple_text": "Management API test post 1",
+                        "simple_number": 10,
+								"modular_content": [{
+									"codename": "modular1"
+								}, {
+									"codename": "modular2"
+								}]
+                    }
+                }
+            ]
+        }
+    ]
+}

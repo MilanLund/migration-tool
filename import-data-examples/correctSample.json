@@ -23,11 +23,9 @@
 						"sample_number": 42,
 						"sample_multiple_choice": [
 							{
-								 "name": "Option 2",
 								 "codename": "option_2"
 							},
 							{
-								 "name": "Option 3",
 								 "codename": "option_3"
 							}
 					  	],
@@ -40,7 +38,6 @@
 					  ],
 						"sample_taxonomy_group": [
 							{
-								 "name": "Term 1",
 								 "codename": "term_1"
 							}
 					  ],

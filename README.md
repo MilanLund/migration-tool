@@ -46,7 +46,7 @@ http://localhost:5000/
 
 ![Image of the GUI](https://raw.githubusercontent.com/MilanLund/migration-tool/master/ui/assets/img/migrationtool.png)
 
-There 3 main areas in the GUI:
+There are 3 main areas in the GUI:
 
 - **Project settings** -  Required fields for Project ID and Content Management ID.
 - **Import data** - Required field which should contain import data in with the [following structure](#structure-of-the-request-body).

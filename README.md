@@ -11,7 +11,9 @@ Purpose of this tool is to migrate data from various sources to Kentico Cloud. M
 
 Planned features are:
 
+- Support for External ID.
 - Support for CSV format as import data.
+- Possibility to generate blueprints for import data.
 
 
 ## Usage

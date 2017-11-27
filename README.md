@@ -7,7 +7,7 @@ Purpose of this tool is to migrate data from various sources to Kentico Cloud. M
 - Validate structure and data types of the migration data.
 - Import migration data in a Kentico Cloud project.
 - Delete migrated data from a Kentico Cloud project in case the import process failed.
-- Import data in GUI
+- Import data in GUI.
 
 Planned features are:
 
@@ -44,7 +44,7 @@ http://localhost:5000/
 
 ### Making requests
 
-![Image of the GUI](/MilanLund/migration-tool/blob/master/ui/assets/img/migrationtool.png?raw=true)
+![Image of the GUI](https://raw.githubusercontent.com/MilanLund/migration-tool/master/ui/assets/img/migrationtool.png)
 
 There 3 main areas in the GUI:
 

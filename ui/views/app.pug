@@ -21,16 +21,24 @@ block content
                         label.form__label(for='cmkey') Content Management API key
                         input.form__input#cmkey(name='cmkey', required)
                     .form__row
-                        button.form__button#import Import data
+                        button.form__button.form__button--main#import Import data
+                form.form#blueprintForm
+                    h2.form__heading Blueprint
+                    .form__row
+                        label.form__label(for='model') Content model
+                        .form__select
+                            select#contentmodel(name='model', required)
+                    .form__row
+                        button.form__button#blueprint Generate blueprint
         section.layout__main
             .layout__main-content
-                .layout__section.layout__section--70
+                .layout__section.layout__section--main
                     .editor#code-editor
                         h2.editor__heading Import data
                         .editor__main
                             .editor__code
                                 textarea.editor__code#import-data
-                .layout__section.layout__section--30
+                .layout__section.layout__section--aside
                     .editor
                         h2.editor__heading Logs
                         .editor__main

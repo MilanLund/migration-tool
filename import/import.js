@@ -23,7 +23,7 @@ function importData (req, res) {
 	Promise.mapSeries(addOptions, (options, index) => {
 		// Import a new content item in a Kentico Cloud project
 		return requestPromise(options).then((data) => {
-			response.sendLog(req, 'Item "' + data.name + '...');
+			response.sendLog(req, 'Content item "' + data.name + '"...');
 			response.sendLog(req, '» Base data imported.');
 			
 			upsertOptions = [];

@@ -5,7 +5,7 @@
         cmKey,
         importData;
 
-    // Make a request to the import endopoint and get a response
+    // Make a request to the import endpoint and get a response
     var makeRequest = function (projectId, cmKey, importData) {
         var request = new XMLHttpRequest(),
             response;

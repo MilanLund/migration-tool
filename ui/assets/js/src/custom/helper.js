@@ -21,11 +21,15 @@ var helper = {
     },
     
     // Add loading animation to the code editor 
-    addLoading: function addLoading () {
+    addLoading: function addLoading (message) {
         var editor = document.querySelector('#code-editor .editor__main'),
             loading = document.createElement('div');
 
-            loading.setAttribute('class', 'editor__loading');
+            if (typeof message !== 'undefined') {
+                loading.setAttribute('class', 'editor__loading editor__loading--' + message); 
+            } else {
+                loading.setAttribute('class', 'editor__loading');
+            }
 
         editor.appendChild(loading);
     },
@@ -53,7 +57,28 @@ var helper = {
         log.innerHTML = message;
         logArea.appendChild(log);
         helper.updateScroll();
-    }
+    },
+
+    createNodeFromString: function createNodeFromString (nodeString) {        
+        var div = document.createElement('div');
+        div.innerHTML = nodeString;
+        return div.childNodes;
+    },
+
+    getMimeType: function getMimeType (format) {
+        var mimeType = '';
+
+        switch (format) {
+            case 'json':
+                mimeType = 'application/json';
+                break;
+            case 'csv':
+                mimeType = 'text/csv';
+                break;
+        }
+
+        return mimeType;
+    } 
 };
 
     

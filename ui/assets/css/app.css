@@ -206,11 +206,14 @@ textarea {
 .layout__section:last-child {
   padding: 0;
 }
-.layout__section--70 {
-  height: 70%;
+.layout__section--main {
+  height: 65%;
 }
-.layout__section--30 {
-  height: 30%;
+.layout__section--aside {
+  height: 35%;
+}
+.form {
+  padding: 0 0 16px;
 }
 .form__heading {
   font-size: 20px;
@@ -238,6 +241,47 @@ textarea {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.form__select {
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  background-color: #fff;
+  position: relative;
+}
+.form__select:before,
+.form__select:after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  background-color: #fff;
+  z-index: 100;
+  top: 50%;
+  margin-top: -8px;
+  right: 12px;
+}
+.form__select:before {
+  background-color: #000;
+  z-index: 50;
+  margin-top: -6px;
+}
+.form__select select {
+  width: 100%;
+  padding: 6px 8px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+  background-image: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 .form__button {
   color: #757575;
@@ -251,6 +295,11 @@ textarea {
   line-height: inherit;
   cursor: pointer;
   min-width: 64px;
+}
+.form__button--main {
+  color: #fff;
+  background-color: #2196f3;
+  border-color: transparent;
 }
 .form__button:hover,
 .form__button:active {
@@ -304,6 +353,9 @@ textarea {
   animation: pulsate 3s ease-out;
   animation-iteration-count: infinite;
 }
+.editor__loading--blueprint:before {
+  content: 'Generating blueprint';
+}
 @keyframes pulsate {
   0% {
     opacity: 1;
@@ -321,6 +373,7 @@ textarea {
   font-family: monospace;
   height: 100%;
   color: black;
+  font-size: 14px;
 }
 /* PADDING */
 .CodeMirror-lines {

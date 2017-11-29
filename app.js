@@ -5,7 +5,7 @@ const express = require('express'),
 	bearerToken = require('express-bearer-token'),
 	cookieParser= require('cookie-parser');
 
-const importRoute = require('./routes/import');
+const rootRoute = require('./routes/root');
 
 const app = express();
 
@@ -23,6 +23,6 @@ app.set('views', path.join(__dirname, './ui/views'));
 app.set('view engine', 'pug');
 
 // Routes
-app.use('/', importRoute);
+app.use('/', rootRoute);
 
 module.exports = app;

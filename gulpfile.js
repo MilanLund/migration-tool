@@ -39,7 +39,8 @@ gulp.task('js', () => {
         './ui/assets/js/src/vendor/socket.io.min.js',
         './ui/assets/js/src/custom/helper.js',
         './ui/assets/js/src/custom/code-editor.js',
-        './ui/assets/js/src/custom/import.js'
+        './ui/assets/js/src/custom/import.js',
+        './ui/assets/js/src/custom/blueprint.js'
         ])
         .pipe(concat('app.js'))
         .pipe(gulp.dest('./ui/assets/js/'))

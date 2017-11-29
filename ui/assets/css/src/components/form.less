@@ -1,4 +1,5 @@
 .form {
+    padding: 0 0 16px;
 
     &__heading {
         font-size: 20px;
@@ -29,7 +30,53 @@
         font-family: inherit;
         font-size: inherit;
         line-height: inherit;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
     }
+
+    &__select {
+        border: 1px solid #bdbdbd;
+        border-radius: 4px;
+        background-color: #fff;
+        position: relative;
+
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 8px;
+            height: 8px;
+            transform: rotate(45deg);
+            background-color: #fff;
+            z-index: 100;
+            top: 50%;
+            margin-top: -8px;
+            right: 12px;
+        }
+
+        &:before {
+            background-color: #000;
+            z-index: 50;
+            margin-top: -6px;
+        }
+
+        select {
+            width: 100%;
+            padding: 6px 8px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            border: none;
+            box-shadow: none;
+            background-color: transparent;
+            background-image: none;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+        }
+    }
+    
 
     &__button {
         color: #757575;
@@ -43,6 +90,12 @@
         line-height: inherit;
         cursor: pointer;
         min-width: 64px;
+
+        &--main {
+            color: #fff;
+            background-color: #2196f3;
+            border-color: transparent;
+        }
 
         &:hover,
         &:active {

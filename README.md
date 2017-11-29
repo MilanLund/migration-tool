@@ -121,12 +121,12 @@ The best way how to access the endpoint is using [Postman](https://www.getpostma
 ```sh
 http://localhost:5000/<YOUR_PROJECT_ID>/blueprint/<FORMAT>/<CONTENT_MODEL_CODENAME>
 ```
-    - Supported format is cuurently only **json**.
+- Supported format is currently only **json**.
 - The request must be GET.
 
 #### Working with the blueprint
 
-To import your data sucessfully you need to fill in your data in the blueprint. See the described examples of how the data should be filled in for supported import data formats:
+To import your data sucessfully you need to fill in your data in the blueprint. See the example with a description of how the data should be filled in for supported import data formats:
 
 - [JSON](#json-structure)
 

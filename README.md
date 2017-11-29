@@ -8,11 +8,11 @@ Purpose of this tool is to migrate data from various sources to Kentico Cloud. M
 - Import migration data in a Kentico Cloud project.
 - Delete migrated data from a Kentico Cloud project in case the import process failed.
 - Import data in GUI.
+- Possibility to generate blueprints for import data.
 
 Planned features are:
 
 - Support for CSV format as import data.
-- Possibility to generate blueprints for import data.
 
 
 ## Usage
@@ -92,9 +92,47 @@ Authorization: Bearer <YOUR_API_KEY>
 Content-type: application/json
 ```
 
-## Structure of the request body 
+## Structure of the request body
 
-To be able to import data sucessfully to Kentico Cloud you need to follow the predefined structure of the JSON object and fit your data in the structure. Example: 
+### Blueprints
+
+To be able to import data sucessfully to Kentico Cloud you need to provide the data in a specific format. To help you compose the data structure correctly you can generate a blueprint. The blueprint is a scaffolding for your import data for a selected content model. There are 2 ways how to generate the blueprint:
+
+- [In GUI](#blueprints-in-gui)
+- [Using an endpoint](#blueprints-using-endpoint)
+
+#### Blueprints in GUI
+
+To generate a blueprint in GUI you need to:
+
+1. Fill in a valid Project ID.
+2. Select a content model.
+3. Hit the "Generate blueprint" button.
+4. The blueprint appears in the code editor.
+
+![Generate blueprints in GUI](https://raw.githubusercontent.com/MilanLund/migration-tool/master/ui/assets/img/blueprint.png)
+
+
+#### Blueprints using the endpoint
+
+The best way how to access the endpoint is using [Postman](https://www.getpostman.com/apps). To generate a blueprint the request must have the following attributes: 
+
+- The request URL must contain your Project ID, format and content model codename in the following format:
+```sh
+http://localhost:5000/<YOUR_PROJECT_ID>/blueprint/<FORMAT>/<CONTENT_MODEL_CODENAME>
+```
+    - Supported format is cuurently only **json**.
+- The request must be GET.
+
+#### Working with the blueprint
+
+To import your data sucessfully you need to fill in your data in the blueprint. See the described examples of how the data should be filled in for supported import data formats:
+
+- [JSON](#json-structure)
+
+### JSON structure
+
+To be able to import JSON data sucessfully to Kentico Cloud you need to follow the predefined structure of the JSON object and fit your data in the structure. Example: 
 ```json
 {
     "items": [{
@@ -105,7 +143,8 @@ To be able to import data sucessfully to Kentico Cloud you need to follow the pr
             },
             "sitemap_locations": [{
                 "codename": "sample_sitemap_grand_child"
-            }]
+            }],
+            "external_id": "42"
         },
         "variants": [{
                 "language": {
@@ -136,12 +175,13 @@ To be able to import data sucessfully to Kentico Cloud you need to follow the pr
         - The `name` property represents name of the content item. String and is required.
         - The `type.codename` property represents codename of a content model and must fit one of the content models specified in your Kentico Cloud project. String and is required.
         - The `sitemap_locations` property represents codenames of sitemap locations to which the content item should be assigned. The codenames must fit the ones that are specified in your Kentico Cloud project. Array and is optional.
+        - The `external_id` property represents your custom identifier for the content item. The property is designed to be used when you are migrating data from other systems where the data items already have an indentifier assigned.
     - The `variants` property stores specific data for each language variant in the project. Each language variant is represented by an array item. Array and is required.
         - The `language.codename` property represents codename of a language variant to which the data should be assigned. The codename must fit one language variant in your Kentico Cloud project. String and is required.
         - The `elements` property represents data that should get imported in the Kentico Cloud project. Object and is required.
             - Child properties of the `elements` object represent content elements of the content model specified in the `item.type.codename` property. Key of each property represents codename of a content element in the content model. Value of the property is your data you attempt to import. Make sure the values are of a correct data type relevant to mapped content element type. 
             
-### Content element types
+#### Content element types
 
 The `elements` property maps your data to content elements of the chosen content model in the `item.type.codename` property. Each content element accepts a different data type:
 
@@ -152,7 +192,7 @@ The `elements` property maps your data to content elements of the chosen content
 
 To fully understand the sturucture of properies in the `elements` property (especially when it comes content elements that accept Array values) I recommend you to check the [Kentico Cloud documentation](https://developer.kenticocloud.com/reference#list-content-items) Try to make several list requests with use of the Delivery and Content Management APIs and see their responses.
 
-**Please note**, uploading **Binary files** and the **Assest** element are not supported.
+**Please note**, uploading **Binary files** and adding  **Assests** are not supported features in this tool.
 
 ## Under the hood
 

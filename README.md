@@ -175,7 +175,7 @@ To be able to import JSON data sucessfully to Kentico Cloud you need to follow t
         - The `name` property represents name of the content item. String and is required.
         - The `type.codename` property represents codename of a content model and must fit one of the content models specified in your Kentico Cloud project. String and is required.
         - The `sitemap_locations` property represents codenames of sitemap locations to which the content item should be assigned. The codenames must fit the ones that are specified in your Kentico Cloud project. Array and is optional.
-        - The `external_id` property represents your custom identifier for the content item. The property is designed to be used when you are migrating data from other systems where the data items already have an indentifier assigned.
+        - The `external_id` property represents your custom identifier for the content item. The property is designed to be used when you are migrating data from other systems where the data items already have an indentifier assigned. String and is optional.
     - The `variants` property stores specific data for each language variant in the project. Each language variant is represented by an array item. Array and is required.
         - The `language.codename` property represents codename of a language variant to which the data should be assigned. The codename must fit one language variant in your Kentico Cloud project. String and is required.
         - The `elements` property represents data that should get imported in the Kentico Cloud project. Object and is required.

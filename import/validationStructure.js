@@ -33,6 +33,10 @@ function isImportDataStructureValid(importData) {
 		key: 'item.sitemap_locations',
 		type: 'array',
 		compulsory: false
+	}, {
+		key: 'item.external_id',
+		type: 'string',
+		compulsory: false
 	}
 	]);
 }

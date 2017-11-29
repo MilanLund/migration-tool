@@ -29,9 +29,11 @@
                 //Log errors 
                 helper.addLog(helper.encodedStr(JSON.parse(response).message), false);
 
-                if (typeof response.validationErrors !== 'undefined') {
-                    for(var i = 0; i < response.validationErrors.length; i++) {
-                        helper.addLog(helper.encodedStr(response.validationErrors[i].message), false);
+                var errors = JSON.parse(response).validation_errors;
+
+                if (typeof errors !== 'undefined') {
+                    for (var i = 0; i < errors.length; i++) {
+                        helper.addLog(helper.encodedStr(errors[i].message), false);
                     }
                 }
             }

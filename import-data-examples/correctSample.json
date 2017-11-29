@@ -41,7 +41,12 @@
 								 "codename": "term_1"
 							}
 					  ],
-						"sample_url_slug": "first-item"
+						"sample_url_slug": "first-item",
+					"sample_assest": [
+						{
+							"id": "cdc1a678-4b53-466e-93e0-1956bd652518"
+					   }
+					]
 				  }
 				}
 			]

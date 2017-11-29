@@ -7,7 +7,8 @@ const express = require('express'),
 	request = require('../import/request'),
 	response = require('../import/response'),
 	validation = require('../import/validation'),
-	importData = require('../import/import');
+	importData = require('../import/import'),
+	blueprint = require('../blueprint/blueprint');
 
 // Tool UI
 router.get('/', (req, res) => {
@@ -46,17 +47,30 @@ router.post('/:projectId', (req, res) => {
 						response.send(res, 400, isDataValid.message);
 					}
 				})
-				/*.catch((error) => {
+				.catch((error) => {
 					response.send(res, error.statusCode, error.error.message);
-				});*/
+				});
 		})
 		.catch((error) => {
 			response.send(res, error.statusCode, error.error.message);
 		});	
 });
 
+// Blueprint endpoint
+router.get('/:projectId/blueprint/:format/:contentModel', (req, res) => {
+
+	// Get all content models
+	requestPromise(request.getContentModelsOptions(req))
+	.then((contentModels) => {	
+		blueprint.renderBlueprint(req, res, contentModels.types);
+	})
+	.catch((error) => {
+		response.send(res, error.statusCode, error.error.message);
+	});
+});
+
 router.use('/:projectId', (req, res) => {
-	response.send(res, 405, 'The endpoint supports only the POST request.');
+	response.send(res, 405, 'Unsupported type of request.');
 });
 
 module.exports = router;

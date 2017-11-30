@@ -1,38 +1,3 @@
-const response = require('../import/response');
-
-// Main funciton
-function renderBlueprint (req, res, contentModels) {
-    if (req.params.format === 'json') {
-
-        // Get information about content model codename given in the endpoint url
-        let model = getContentModel(contentModels, req.params.contentModel);
-
-        if (model === null) {
-            response.send(res, 405, 'Content model "' + req.params.contentModel + '" does not exist in the Kentico Cloud project.');
-        }
-
-        // Send the blueprint as a response
-        res.status(200).send(structureBlueprint(model));
-    } else {
-        response.send(res, 405, 'Blueprint format "' + req.params.format + '" is not supported.');
-    }
-} 
-
-// Get specific content model object codename given in the endpoint url
-function getContentModel (contentModels, codename) {
-    let model = null;
-
-    // Iterate all models
-    for (let i = 0; i < contentModels.length; i++) {
-        if (contentModels[i].system.codename === codename) {
-            // If codenames equal get the model object
-            model = contentModels[i];
-        }
-    }
-
-    return model;
-}
-
 // Create structure of the blueprint JSON object
 function structureBlueprint (model) {
     let blueprint = {};
@@ -95,9 +60,9 @@ function getElementValue (type) {
     }
     
     return value;
-
 }
 
+
 module.exports = {
-	renderBlueprint
+	structureBlueprint
 };

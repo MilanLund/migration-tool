@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const structure = require('./validationStructure'),
 	models = require('./validationContentModels'),
-	response = require('./response');
+	response = require('../general/response');
 
 // Validates import data sturucture and compares it to content models structure in the Kentico Cloud project 
 function isImportDataValid(req, importData, contentModels) {

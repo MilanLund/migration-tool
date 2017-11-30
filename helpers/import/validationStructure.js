@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const response = require('./response');
+const response = require('../general/response');
 
 // Defines what properties of import data should be validated
 function isImportDataStructureValid(importData) {

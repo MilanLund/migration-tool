@@ -8,9 +8,9 @@ const express = require('express'),
 const rootRoute = require('./routes/root');
 
 const app = express();
-
-app.use(logger('dev'));
+app.use(bodyParser.text({ type: 'text/csv' }));
 app.use(bodyParser.json());
+app.use(logger('dev'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bearerToken());

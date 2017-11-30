@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
-const request = require('./request'),
+const request = require('../general/request'),
+	response = require('../general/response'),
 	Promise = require('bluebird'),
-	response = require('./response'),
 	requestPromise = require('request-promise');
 
 // Makes the whole import process happen
-function importData (req, res) {
+function importData (req, res, data) {
 	let addOptions = [],
 		upsertOptions = [],
 		variant,
@@ -14,33 +14,33 @@ function importData (req, res) {
 		importedItems = [];
 
 	// Iterate content items in import data
-	for (var i = 0; i < req.body.items.length; i++) {
+	for (var i = 0; i < data.items.length; i++) {
 		// Fill the array with request options that add a new content item
-		addOptions.push(request.getAddOptions(req, req.body.items[i].item));
+		addOptions.push(request.getAddOptions(req, data.items[i].item));
 	}
 	
 	// Iterate serially add request options
 	Promise.mapSeries(addOptions, (options, index) => {
 		// Import a new content item in a Kentico Cloud project
-		return requestPromise(options).then((data) => {
-			response.sendLog(req, 'Content item "' + data.name + '"...');
+		return requestPromise(options).then((items) => {
+			response.sendLog(req, 'Content item "' + items.name + '"...');
 			response.sendLog(req, '» Base data imported.');
 			
 			upsertOptions = [];
 
 			// Store identifiers of the new content item
 			importedItems.push({
-				id: data.id,
-				codename: data.codename
+				id: items.id,
+				codename: items.codename
 			});
 	
 			// Iterate content variants in the content item
-			for (var j = 0; j < req.body.items[index].variants.length; j++) {
-				variant = req.body.items[index].variants[j];
+			for (var j = 0; j < data.items[index].variants.length; j++) {
+				variant = data.items[index].variants[j];
 				elem = { elements: variant.elements };
 				lang = variant.language.codename;
 				// Fill the array with request options that add a new language variants for the content item 
-				upsertOptions.push(request.getUpsertOptions(req, elem, data.id, lang));
+				upsertOptions.push(request.getUpsertOptions(req, elem, items.id, lang));
 			}
 
 			// Iterate serially language request options

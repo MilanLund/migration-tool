@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const response = require('./response');
+const response = require('../general/response');
 
 // Compares import data with structure of content models defined in the Kentico Cloud project
 // Validates data types of imported data and mapped content elements

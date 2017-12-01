@@ -18,7 +18,7 @@ There are 2 ways on how to run the tool:
 - [GUI](#gui)
 - [Endpoint interface](#endpoint-interface)
 
-Both the GUI and the Endpoint interface require you to acknowledge [structure of the import data](#structure-of-the-request-body).
+Both the GUI and the endpoint interface require you to acknowledge [structure of the import data](#structure-of-the-request-body).
 
 ## GUI
 
@@ -45,14 +45,14 @@ http://localhost:5000/
 
 ### Importing data
 
-![Image of the GUI](https://raw.githubusercontent.com/MilanLund/migration-tool/master/ui/assets/img/migrationtool.png)
+![Image of the GUI](https://raw.githubusercontent.com/MilanLund/migration-tool/master/gui/assets/img/migrationtool.png)
 
 To import data successfully you need to fill in following fields in the GUI:
 
 - **Project settings** -  Required fields for Project ID and Content Management ID. (Tip: You can obtain these values in the **API keys** page in the Kentico Cloud administration interface of your project).
 - **Import data** - Required field which should contain import data of the [following structure](#structure-of-the-request-body). Could be in JSON or CSV format. You can generate a [blueprint](#blueprints-in-gui) to help you structure the import data.
 
-When you hit the **Import data** button you can see information about the ongoing import process. When the import process gets finished the response appears in the **Import data** field.
+When you hit the **Import data** button you can see information about the ongoing import process in the **Logs** area. When the import process gets finished the response appears in the **Import data** field.
 
 ## Endpoint interface
 
@@ -117,7 +117,7 @@ To generate a blueprint in GUI you need to:
 4. Hit the "Generate blueprint" button.
 5. The blueprint appears in the code editor.
 
-![Generate blueprints in GUI](https://raw.githubusercontent.com/MilanLund/migration-tool/master/ui/assets/img/blueprint.png)
+![Generate blueprints in GUI](https://raw.githubusercontent.com/MilanLund/migration-tool/master/gui/assets/img/blueprint.png)
 
 ### Blueprints using the endpoint
 
@@ -199,7 +199,7 @@ Example:
 - `sitemap_locations` codenames in the **Sitemap** page.
 - `language` codenames in the **Project** > **Localization** page.
 
-![Codename](https://raw.githubusercontent.com/MilanLund/migration-tool/master/ui/assets/img/codename.png)
+![Codename](https://raw.githubusercontent.com/MilanLund/migration-tool/master/gui/assets/img/codename.png)
             
 #### Content element types
 
@@ -221,19 +221,18 @@ Example:
 name,type,sitemap_locations/codename,external_id,czech/simple_text,czech/simple_number,default/simple_text,default/simple_number
 Management API test post 1,simple_type,sample_sitemap_grand_child|sample_sitemap_grand_child,42,Management API testovací článek 1,20,Management API test post 1,10
 ```
-Columns delimiter could be **,** or **;**.
-Column values delimiter is **|**.
+Columns delimiter could be `,` or `;` characters. Column values delimiter is `|`.
 
 When structuring import data in CSV you need to follow these rules:
-- First line is header that defines structure of imported items. Other lines are imported items.
-- **name** represents name of the content item. Required.
-- **type** represents codename of a content model and must fit one of the content models specified in your Kentico Cloud project. Required.
-- **sitemap_locations/codename** represents codenames of sitemap locations to which the content item should be assigned. The codenames must fit the ones that are specified in your Kentico Cloud project. Could consist of multiple values separated by the **|** character. Optional.
-- **external_id** represents your custom identifier for the content item. The property is designed to be used when you are migrating data from other systems where the data items already have an indentifier assigned. Optional.
+- The first row is header that defines structure of imported items. The other rows represent items that you want to import.
+- The `name*` column represents name of the content item. Required.
+- The `type` column represents codename of a content model and must fit one of the content models specified in your Kentico Cloud project. Required.
+- The `sitemap_locations/codename` column represents codenames of sitemap locations to which the content item should be assigned. The codenames must fit the ones that are specified in your Kentico Cloud project. Could consist of multiple values separated by the `|` character. Optional.
+- The `external_id` column represents your custom identifier for the content item. The property is designed to be used when you are migrating data from other systems where the data items already have an indentifier assigned. Optional.
 - Another columns stand for specific data for each language variant in the project. They could have one of the following formats depending on content element they represent:
-    - **Text, Rich text, Url slug, Number, Date & time** content elements should have header in format **<language_codename>/<content_model_codename>**.
-    - **Multiple choice, Modular content, Taxonomy** content elements should have header in format **<language_codename>/<content_model_codename>/codename**. Could consist of multiple values separated by the **|** character.
-    - **Asset** content element should have header in format **<language_codename>/<content_model_codename>/id**. Could consist of multiple values separated by the **|** character.
+    - `Text, Rich text, Url slug, Number, Date & time` content elements should have header in format `<language_codename>/<content_model_codename>`.
+    - `Multiple choice, Modular content, Taxonomy` content elements should have header in format `<language_codename>/<content_model_codename>/codename`. Could consist of multiple values separated by the `|` character.
+    - `Asset` content element should have header in format `<language_codename>/<content_model_codename>/id`. Could consist of multiple values separated by the `|` character.
 
 ## Under the hood
 

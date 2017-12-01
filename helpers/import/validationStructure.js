@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+'use-strict';
+
 const response = require('../general/response');
 
 // Defines what properties of import data should be validated

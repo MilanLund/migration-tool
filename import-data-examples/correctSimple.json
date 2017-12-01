@@ -15,7 +15,7 @@
           "variants":[  
              {  
                 "language":{  
-                   "codename":"Czech"
+                   "codename":"czech"
                 },
                 "elements":{  
                    "simple_text":"Management API testovací článek 1",
@@ -48,7 +48,7 @@
 			"variants":[  
 				{  
 					"language":{  
-						"codename":"Czech"
+						"codename":"czech"
 					},
 					"elements":{  
 						"simple_text":"Management API testovací článek 2",

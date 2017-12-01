@@ -34,7 +34,13 @@ block content
             .layout__main-content
                 .layout__section.layout__section--main
                     .editor#code-editor
-                        h2.editor__heading Import data
+                        .editor__heading 
+                            h2 Import data
+                            ul.switch
+                                li.switch__item
+                                    a(href='#', data-format='application/json').switch__link JSON
+                                li.switch__item
+                                    a(href='#', data-format='text/csv').switch__link CSV
                         .editor__main
                             .editor__code
                                 textarea.editor__code#import-data

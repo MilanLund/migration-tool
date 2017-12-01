@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+'use-strict';
+
 const response = require('../general/response');
 
 // Compares import data with structure of content models defined in the Kentico Cloud project

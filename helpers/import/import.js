@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+'use-strict';
+
 const request = require('../general/request'),
 	response = require('../general/response'),
 	Promise = require('bluebird'),

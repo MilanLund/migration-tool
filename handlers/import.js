@@ -2,15 +2,15 @@
 'use strict';
 
 const requestPromise = require('request-promise'),
-    csvtojson = require('csvtojson'),
-    request = require('../helpers/general/request'),
-    response = require('../helpers/general/response'),
-    validation = require('../helpers/import/validation'),
-    csvJson = require('../helpers/import/csvJson'),
-    importData = require('../helpers/import/import');
+	csvtojson = require('csvtojson'),
+	request = require('../helpers/general/request'),
+	response = require('../helpers/general/response'),
+	validation = require('../helpers/import/validation'),
+	csvJson = require('../helpers/import/csvJson'),
+	importData = require('../helpers/import/import');
 
 function validateImportJSONData (req, res, data) {
-    // If no body sent
+	// If no body sent
 	if (Object.keys(data).length === 0 && data.constructor === Object) {
 		response.send(res, 400, 'The request must contain import data in the JSON or CSV format sent as the request body with a relevant Content-Type request header.');
 		return;
@@ -25,7 +25,7 @@ function validateImportJSONData (req, res, data) {
 	// First level - Validate Project ID and API key in the authorization header
 	requestPromise(request.getAPIKeyProjectIDOptions(req))
 		.then(() => {		
-
+			
 			// Second level - Validate content models
 			requestPromise(request.getContentModelsOptions(req))
 				.then((contentModels) => {
@@ -49,30 +49,30 @@ function validateImportJSONData (req, res, data) {
 }
 
 function validateImportCSVData (req, res) {
-    var data = { items: [] };
+	var data = { items: [] };
     
-    csvtojson({
-        checkType: true,
-        delimiter: 'auto'
-    })
-    .fromString(req.body)
-    .on('json', (json) => {
-        data.items.push(csvJson.format(json));
-    })
-    .on('done', () => {
-        validateImportJSONData(req, res, data);
-    });  
+	csvtojson({
+		checkType: true,
+		delimiter: 'auto'
+	})
+		.fromString(req.body)
+		.on('json', (json) => {
+			data.items.push(csvJson.format(json));
+		})
+		.on('done', () => {
+			validateImportJSONData(req, res, data);
+		});  
 }
 
 function migrateData (req, res) {
-    switch (req.header('Content-Type')) {
-        case 'text/csv':
-            validateImportCSVData(req, res);  
-            break;
-        case 'application/json':
-            validateImportJSONData(req, res, req.body);
-            break;
-    }
+	switch (req.header('Content-Type')) {
+	case 'text/csv':
+		validateImportCSVData(req, res);  
+		break;
+	case 'application/json':
+		validateImportJSONData(req, res, req.body);
+		break;
+	}
 }
 
 module.exports = {

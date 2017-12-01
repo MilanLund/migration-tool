@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+'use-strict';
+
 const structure = require('./validationStructure'),
 	models = require('./validationContentModels'),
 	response = require('../general/response');

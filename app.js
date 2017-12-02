@@ -13,10 +13,10 @@ const rootRoute = require('./routes/root');
 
 const app = express();
 app.use(bodyParser.text({ type: 'text/csv' }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(logger('dev'));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(bearerToken());
 app.use(express.static(path.join(__dirname, './gui/assets'), {
 	maxAge: 86400000

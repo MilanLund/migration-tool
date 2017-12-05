@@ -39,9 +39,9 @@ function validateImportJSONData (req, res, data) {
 						response.send(res, 400, isDataValid.message, null, isDataValid.itemIndex);
 					}
 				})
-				.catch((error) => {
+				/*.catch((error) => {
 					response.send(res, error.statusCode, error.error.message);
-				});
+				});*/
 		})
 		.catch((error) => {
 			response.send(res, error.statusCode, error.error.message);

@@ -34,7 +34,9 @@
 
 				// Set the response body to the code editor
 				editorWrapper.setValue(js_beautify(response, {indent_size: 4}));
-				helper.addLog('Import successful. See information about imported items in the code editor above.', true);
+				setTimeout(function () {
+					helper.addLog('Import successful. See information about imported items in the code editor above.', true);
+				}, 500);		
 			} else {
 				// If the response is failed
 				//Log errors 

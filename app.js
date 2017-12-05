@@ -39,8 +39,3 @@ app.set('view engine', 'pug');
 app.use('/', rootRoute);
 
 module.exports = app;
-/*
-
-app.use((error, res) => {
-	response.send(res, 400, error.message);
-});*/

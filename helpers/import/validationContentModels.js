@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 'use-strict';
 
-const response = require('../general/response');
+const response = require('../general/response')
+	cheerio = require('cheerio');
 
 // Compares import data with structure of content models defined in the Kentico Cloud project
 // Validates data types of imported data and mapped content elements
@@ -48,6 +49,9 @@ function importDataFitContentModels(importData, contentModels) {
 						contentElementExists = true;
 						// and is of a correct data type
 						contentElementValid = checkContentElementType(importData.items[i].variants[k].elements[keyData], contentModels.types[j].elements[keyModels]);
+						// in case of rich text element encapsulate all text nodes in the <p> tag
+						importData.items[i].variants[k].elements[keyData] = encapsulateRichText(importData.items[i].variants[k].elements[keyData], contentModels.types[j].elements[keyModels]);
+
 						return contentElementExists;
 					}
 				});
@@ -81,21 +85,21 @@ function checkContentElementType(dataElement, modelElement) {
 
 	// Unify element types into data types
 	switch (modelElement.type) {
-	case 'text':
-	case 'rich_text':
-	case 'url_slug':
-	case 'date_time':
-		dataTypeModel = 'string';
-		break;
-	case 'number':
-		dataTypeModel = 'number';
-		break;
-	case 'multiple_choice':
-	case 'modular_content': 
-	case 'taxonomy':
-	case 'asset':
-		dataTypeModel = 'array';
-		break;
+		case 'text':
+		case 'rich_text':
+		case 'url_slug':
+		case 'date_time':
+			dataTypeModel = 'string';
+			break;
+		case 'number':
+			dataTypeModel = 'number';
+			break;
+		case 'multiple_choice':
+		case 'modular_content': 
+		case 'taxonomy':
+		case 'asset':
+			dataTypeModel = 'array';
+			break;
 	}
 
 	// Check data types od import data
@@ -115,6 +119,41 @@ function checkContentElementType(dataElement, modelElement) {
 		dataTypeData: dataTypeData,
 		dataTypeModel: dataTypeModel
 	};
+}
+
+// Automatically encapsulates rich text value in the <p> tag
+function encapsulateRichText (dataElement, modelElement) {
+	
+	/*if (modelElement.type === 'rich_text') {
+		dataElement = '<div class="helper">' + dataElement + '</div>';
+		$ = cheerio.load(dataElement);
+
+		$('.helper')
+		.contents() // get all child node including text and comment 
+		.each(function(i, el) { // filter the text node which is not empty	
+		 			
+			if (el.type === 'text') {
+				$(this).replaceWith($('<p>' + $(this).text() + '</p>'));		
+			}
+
+			if (el.name === 'a') {
+				$(this).replaceWith($('<p>' + $(this).clone().wrap('<div>').parent().html() + '</p>'));
+			}
+
+			if ($(this).find('br').length) {
+				$(this).find('br').remove();	
+			}
+
+			if (el.type === 'comment') {
+				$(this).remove();
+			}
+		});
+		$('.helper').find('br').remove();
+
+		return $('.helper').html();
+	}*/
+
+	return dataElement;
 }
 
 module.exports = {

@@ -90,7 +90,9 @@ var helper = {
 		return mimeType;
 	},
 
+	// Highlight a character on the given position in the code editor
 	markTextInEditor: function markTextInEditor (position) {
+		// Get position for the character and the next one in the ode editor
 		var charPosition = editorWrapper.posFromIndex(parseInt(position)),
 			charPositionNext = editorWrapper.posFromIndex(parseInt(position) + 1);
 
@@ -100,7 +102,10 @@ var helper = {
 			charPositionNext = editorWrapper.posFromIndex(parseInt(position) + 2);
 		}
 
-		editorMarkers.push(editorWrapper.markText(charPosition, charPositionNext, { readOnly: true, css: "background-color : #ffd2d2" }));
+		// editorMarkers is a global variable defined in the ./code-editor.js file 
+		// Store marker reference so that it could be removed later
+		editorMarkers.push(editorWrapper.markText(charPosition, charPositionNext, { css: "background-color : #ffd2d2" }));
+		// Scroll to the marker
 		editorWrapper.setCursor(charPosition.line);
 	}
 };

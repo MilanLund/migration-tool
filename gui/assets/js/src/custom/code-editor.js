@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 'use-strict';
 
+// Global variables that are used in multiple js files to control state of the code editor 
 var editorWrapper,
 	editorMarkers = [];
 

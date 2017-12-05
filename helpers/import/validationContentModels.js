@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 'use-strict';
 
-const response = require('../general/response')
+const response = require('../general/response'),
+	sanitizeHtml = require('sanitize-html');
 	cheerio = require('cheerio');
 
 // Compares import data with structure of content models defined in the Kentico Cloud project
@@ -124,7 +125,8 @@ function checkContentElementType(dataElement, modelElement) {
 // Automatically encapsulates rich text value in the <p> tag
 function encapsulateRichText (dataElement, modelElement) {
 	
-	/*if (modelElement.type === 'rich_text') {
+	if (modelElement.type === 'rich_text') {
+		/*
 		dataElement = '<div class="helper">' + dataElement + '</div>';
 		$ = cheerio.load(dataElement);
 
@@ -151,7 +153,14 @@ function encapsulateRichText (dataElement, modelElement) {
 		$('.helper').find('br').remove();
 
 		return $('.helper').html();
-	}*/
+		*/
+
+		var clean = sanitizeHtml(dataElement, {
+			allowedTags: [ 'p', 'h1', 'h2', 'h3', 'h4', 'strong', 'a', 'em', 'ol', 'ul', 'li', 'table', 'tbody', 'td', 'td', 'figure', 'img', 'object', 'br' ]
+		});
+
+		return clean;
+	}
 
 	return dataElement;
 }

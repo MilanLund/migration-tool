@@ -36,7 +36,7 @@ function validateImportJSONData (req, res, data) {
 						response.sendLog(req, 'Starting import...');
 						importData.importData(req, res, data);
 					} else {
-						response.send(res, 400, isDataValid.message);
+						response.send(res, 400, isDataValid.message, null, isDataValid.itemIndex);
 					}
 				})
 				.catch((error) => {

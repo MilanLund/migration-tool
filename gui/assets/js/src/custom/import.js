@@ -40,7 +40,8 @@
 				//Log errors 
 				helper.addLog(helper.encodedStr(JSON.parse(response).message), false);
 
-				var errors = JSON.parse(response).validation_errors;
+				var errors = JSON.parse(response).validation_errors,
+					itemIndex = JSON.parse(response).itemIndex;
 
 				if (typeof errors !== 'undefined') {
 					for (var i = 0; i < errors.length; i++) {
@@ -85,6 +86,11 @@
 		cmKey = document.getElementById('cmkey').value;
 		importData = editorWrapper.getValue(),
 		format = document.querySelector('.switch__link--active').getAttribute('data-format');
+
+		// Markers is a global variable defined in the ./code-editor.js file
+		editorMarkers.forEach(function (marker) {
+			marker.clear();
+		});
 
 		saveToLocalStorage(projectId, cmKey, importData, format);
 

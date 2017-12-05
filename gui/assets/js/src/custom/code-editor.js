@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 'use-strict';
 
-var editorWrapper;
+var editorWrapper,
+	editorMarkers = [];
 
 (function() {
 	var codeEditor = {

@@ -60,6 +60,13 @@ var helper = {
 		log.innerHTML = message;
 		logArea.appendChild(log);
 		helper.updateScroll();
+
+		if (message.indexOf('at position') > -1) {
+			var messageArray = message.split(' '),
+				charPosition = parseInt(messageArray[messageArray.length - 1]);
+
+			helper.markTextInEditor(charPosition);
+		}
 	},
 
 	createNodeFromString: function createNodeFromString (nodeString) {        
@@ -81,7 +88,21 @@ var helper = {
 		}
 
 		return mimeType;
-	} 
+	},
+
+	markTextInEditor: function markTextInEditor (position) {
+		var charPosition = editorWrapper.posFromIndex(parseInt(position)),
+			charPositionNext = editorWrapper.posFromIndex(parseInt(position) + 1);
+
+		// Correct marker position if the error occurs at the end of a line
+		if (charPosition.ch === editorWrapper.getLine(charPosition.line).length) {
+			charPosition = editorWrapper.posFromIndex(parseInt(position) + 1);
+			charPositionNext = editorWrapper.posFromIndex(parseInt(position) + 2);
+		}
+
+		editorMarkers.push(editorWrapper.markText(charPosition, charPositionNext, { readOnly: true, css: "background-color : #ffd2d2" }));
+		editorWrapper.setCursor(charPosition.line);
+	}
 };
 
     

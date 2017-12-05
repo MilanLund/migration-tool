@@ -13,12 +13,14 @@ function setValidationFailed(property, key, keysLength, errorMessage, index) {
 	let isDataValid = {};
 	
 	isDataValid.isDataValid = false;
+	isDataValid.itemIndex = index;
 
 	if (keysLength === 1) {
 		isDataValid.message = 'The object key "' + property + '" ' + errorMessage + ' in your import data item of index ' + index + '.';
 	} else {
 		isDataValid.message = 'The object key "' + property + '" in the "' + key + '" object ' + errorMessage + ' in your import data item of index ' + index + '.';
 	}
+
 	return isDataValid;
 }
 
@@ -28,7 +30,8 @@ function setValidationFailedContentModels(contentModel, index) {
 
 	isDataValid.isDataValid = false;
 	isDataValid.message = 'Content model "' + contentModel + '" referenced in your import data item of index ' + index + ' does not exist in the project.';
-	
+	isDataValid.itemIndex = index;
+
 	return isDataValid;
 }
 
@@ -38,7 +41,8 @@ function setValidationFailedContentElementExists(contentElement, contentModel, i
 
 	isDataValid.isDataValid = false;
 	isDataValid.message = 'Content element "' + contentElement + '" referenced in your import data item of index ' + index + ' does not exist in content model "' + contentModel + '".';
-	
+	isDataValid.itemIndex = index;
+
 	return isDataValid;
 }
 
@@ -48,18 +52,23 @@ function setValidationFailedContentElementDataType(contentElement, dataTypeModel
 
 	isDataValid.isDataValid = false;
 	isDataValid.message = 'The "' + contentElement + '" content element is type of "'+ dataTypeData +'" but should be "'+ dataTypeModel +'" in your import data item of index ' + index + '.';
-	
+	isDataValid.itemIndex = index;
+
 	return isDataValid;
 }
 
 // Wrapper for sending responses
-function send(res, code, message, validationErrors) {
+function send(res, code, message, validationErrors, itemIndex) {
 	let response = {
 		message: message
 	};
 
-	if (typeof validationErrors !== 'undefined') {
+	if (typeof validationErrors !== 'undefined' && validationErrors !== null) {
 		response.validation_errors = validationErrors;
+	}
+
+	if (typeof itemIndex !== 'undefined' && itemIndex !== null) {
+		response.itemIndex = itemIndex;
 	}
 
 	res.status(code).send(response);

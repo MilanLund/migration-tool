@@ -11,11 +11,16 @@ var editorWrapper,
 			var textArea = document.getElementById(id);
             
 			//Init the code editor
+			CodeMirror.keyMap.default['Shift-Tab'] = 'indentLess';
+
 			var myCodeMirror = CodeMirror.fromTextArea(textArea, {
 				lineNumbers: true,
 				lineWrapping: false,
 				mode: mode,
-				theme: 'material'
+				theme: 'material',
+				indentUnit: 3,
+				tabSize: 3
+
 			});
             
 			//Set the code editor to an empty state
@@ -45,7 +50,7 @@ var editorWrapper,
 	// Set code from local storage
 	if (importData !== null) {
 		if (format === 'application/json') {
-			editorWrapper.setValue(js_beautify(importData, {indent_size: 4}));
+			editorWrapper.setValue(js_beautify(importData, {indent_size: 3}));
 		} else if (format === 'text/csv') {
 			editorWrapper.setValue(importData);
 		}   

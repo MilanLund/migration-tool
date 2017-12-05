@@ -33,7 +33,7 @@
 				editorWrapper.setOption('mode', 'application/json');
 
 				// Set the response body to the code editor
-				editorWrapper.setValue(js_beautify(response, {indent_size: 4}));
+				editorWrapper.setValue(js_beautify(response, {indent_size: 3}));
 				setTimeout(function () {
 					helper.addLog('Import successful. See information about imported items in the code editor above.', true);
 				}, 500);		

@@ -78,7 +78,7 @@
 			if (request.status >= 200 && request.status < 400) {
 				// Set the response body to the code editor
 				if (format === 'json') {
-					editorWrapper.setValue(js_beautify(response, {indent_size: 4}));
+					editorWrapper.setValue(js_beautify(response, {indent_size: 3}));
 					helper.addLog('JSON blueprint for the "' + model + '" content model successfully generated.', true);
 				} else if (format === 'csv') {
 					editorWrapper.setValue(response);

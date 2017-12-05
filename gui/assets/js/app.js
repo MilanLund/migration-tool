@@ -2609,11 +2609,16 @@ var editorWrapper,
 			var textArea = document.getElementById(id);
             
 			//Init the code editor
+			CodeMirror.keyMap.default['Shift-Tab'] = 'indentLess';
+
 			var myCodeMirror = CodeMirror.fromTextArea(textArea, {
 				lineNumbers: true,
 				lineWrapping: false,
 				mode: mode,
-				theme: 'material'
+				theme: 'material',
+				indentUnit: 3,
+				tabSize: 3
+
 			});
             
 			//Set the code editor to an empty state
@@ -2643,7 +2648,7 @@ var editorWrapper,
 	// Set code from local storage
 	if (importData !== null) {
 		if (format === 'application/json') {
-			editorWrapper.setValue(js_beautify(importData, {indent_size: 4}));
+			editorWrapper.setValue(js_beautify(importData, {indent_size: 3}));
 		} else if (format === 'text/csv') {
 			editorWrapper.setValue(importData);
 		}   
@@ -2704,7 +2709,7 @@ var editorWrapper,
 				editorWrapper.setOption('mode', 'application/json');
 
 				// Set the response body to the code editor
-				editorWrapper.setValue(js_beautify(response, {indent_size: 4}));
+				editorWrapper.setValue(js_beautify(response, {indent_size: 3}));
 				setTimeout(function () {
 					helper.addLog('Import successful. See information about imported items in the code editor above.', true);
 				}, 500);		
@@ -2868,7 +2873,7 @@ var editorWrapper,
 			if (request.status >= 200 && request.status < 400) {
 				// Set the response body to the code editor
 				if (format === 'json') {
-					editorWrapper.setValue(js_beautify(response, {indent_size: 4}));
+					editorWrapper.setValue(js_beautify(response, {indent_size: 3}));
 					helper.addLog('JSON blueprint for the "' + model + '" content model successfully generated.', true);
 				} else if (format === 'csv') {
 					editorWrapper.setValue(response);

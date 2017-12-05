@@ -3,7 +3,6 @@
 
 const response = require('../general/response'),
 	sanitizeHtml = require('sanitize-html');
-	cheerio = require('cheerio');
 
 // Compares import data with structure of content models defined in the Kentico Cloud project
 // Validates data types of imported data and mapped content elements
@@ -126,35 +125,6 @@ function checkContentElementType(dataElement, modelElement) {
 function encapsulateRichText (dataElement, modelElement) {
 	
 	if (modelElement.type === 'rich_text') {
-		/*
-		dataElement = '<div class="helper">' + dataElement + '</div>';
-		$ = cheerio.load(dataElement);
-
-		$('.helper')
-		.contents() // get all child node including text and comment 
-		.each(function(i, el) { // filter the text node which is not empty	
-		 			
-			if (el.type === 'text') {
-				$(this).replaceWith($('<p>' + $(this).text() + '</p>'));		
-			}
-
-			if (el.name === 'a') {
-				$(this).replaceWith($('<p>' + $(this).clone().wrap('<div>').parent().html() + '</p>'));
-			}
-
-			if ($(this).find('br').length) {
-				$(this).find('br').remove();	
-			}
-
-			if (el.type === 'comment') {
-				$(this).remove();
-			}
-		});
-		$('.helper').find('br').remove();
-
-		return $('.helper').html();
-		*/
-
 		var clean = sanitizeHtml(dataElement, {
 			allowedTags: [ 'p', 'h1', 'h2', 'h3', 'h4', 'strong', 'a', 'em', 'ol', 'ul', 'li', 'table', 'tbody', 'td', 'td', 'figure', 'img', 'object', 'br' ]
 		});

@@ -234,6 +234,20 @@ When structuring import data in CSV you need to follow these rules:
     - `Multiple choice, Modular content, Taxonomy` content elements should have header in format `<language_codename>/<content_model_codename>/codename`. Could consist of multiple values separated by the `|` character.
     - `Asset` content element should have header in format `<language_codename>/<content_model_codename>/id`. Could consist of multiple values separated by the `|` character.
 
+**Please note**, the CSV structure has been built on the foundations of the JSON structure described above. Under the hood, CSV import data are translated to JSON and imported to the Kentico Cloud project. The `/` character in the header columns stands for a delimiter of parent and child properties of the JSON structure. For example 
+```csv
+sitemap_locations/codename
+sample_sitemap_grand_child;sample_sitemap_child
+```
+is translated to 
+```json
+"sitemap_locations": [{
+    "codename": "sample_sitemap_grand_child"
+},{
+    "codename": "sample_sitemap_child"
+}]
+```
+
 ## Under the hood
 
 Below you can find a brief description of what the tool does under the hood:

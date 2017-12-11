@@ -42,8 +42,6 @@ function getContentModel (contentModels, codename) {
 	return model;
 }
 
-
-
 module.exports = {
 	renderBlueprint
 };

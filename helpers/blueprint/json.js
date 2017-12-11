@@ -65,7 +65,6 @@ function getElementValue (type) {
 	return value;
 }
 
-
 module.exports = {
 	structureBlueprint
 };

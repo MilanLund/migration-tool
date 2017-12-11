@@ -22,27 +22,23 @@ function validateImportJSONData (req, res, data) {
 		return;
 	}
 
-	// First level - Validate Project ID and API key in the authorization header
-	requestPromise(request.getAPIKeyProjectIDOptions(req))
-		.then(() => {		
-			
-			// Second level - Validate content models
-			requestPromise(request.getContentModelsOptions(req))
-				.then((contentModels) => {
-					let isDataValid = validation.isImportDataValid(req, data, contentModels);
+	// Validate Project ID and API key in the authorization header
+	let migration = requestPromise(request.getAPIKeyProjectIDOptions(req)).then(() => {		
+		// Validate content models
+		return requestPromise(request.getContentModelsOptions(req));
+	});
 
-					if (isDataValid.isDataValid) {
-						response.sendLog(req, 'Import data and content models comparision ok...');
-						response.sendLog(req, 'Starting import...');
-						importData.importData(req, res, data);
-					} else {
-						response.send(res, 400, isDataValid.message, null, isDataValid.itemIndex);
-					}
-				})
-				/*.catch((error) => {
-					response.send(res, error.statusCode, error.error.message);
-				});*/
-		})
+	migration.then((contentModels) => {
+		let isDataValid = validation.isImportDataValid(req, data, contentModels);
+
+		if (isDataValid.isDataValid) {
+			response.sendLog(req, 'Import data and content models comparision ok...');
+			response.sendLog(req, 'Starting import...');
+			importData.importData(req, res, data);
+		} else {
+			response.send(res, 400, isDataValid.message, null, isDataValid.itemIndex);
+		}
+	})
 		.catch((error) => {
 			response.send(res, error.statusCode, error.error.message);
 		});	

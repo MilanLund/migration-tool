@@ -122,8 +122,7 @@ function checkContentElementType(dataElement, modelElement) {
 }
 
 // Automatically encapsulates rich text value in the <p> tag
-function encapsulateRichText (dataElement, modelElement) {
-	
+function encapsulateRichText (dataElement, modelElement) {	
 	if (modelElement.type === 'rich_text') {
 		var clean = sanitizeHtml(dataElement, {
 			allowedTags: [ 'p', 'h1', 'h2', 'h3', 'h4', 'strong', 'a', 'em', 'ol', 'ul', 'li', 'table', 'tbody', 'td', 'td', 'figure', 'img', 'object', 'br' ]

@@ -21,8 +21,7 @@ function isImportDataStructureValid(importData) {
 			key: 'elements',
 			type: 'object',
 			compulsory: true
-		}
-		]
+		}]
 	}, {
 		key: 'item.name',
 		type: 'string',
@@ -39,8 +38,7 @@ function isImportDataStructureValid(importData) {
 		key: 'item.external_id',
 		type: 'string',
 		compulsory: false
-	}
-	]);
+	}]);
 }
 
 function checkProperties(importData, settings, isParentIteration, parentLevelIndex) {

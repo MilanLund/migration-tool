@@ -59,7 +59,8 @@ function importData (req, res, data) {
 				.catch((error) => {
 					throw error;
 				});
-		}).catch((error) => {
+		})
+		.catch((error) => {
 			throw error;
 		});
 	})

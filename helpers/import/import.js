@@ -23,7 +23,7 @@ function importData (req, res, data) {
 	
 	// Iterate serially add request options
 	Promise.mapSeries(addOptions, (options, index) => {
-		// Import a new content item in a Kentico Cloud project
+		// Import a new content item in a Kentico Kontent project
 		return requestPromise(options).then((items) => {
 			response.sendLog(req, 'Content item "' + items.name + '"...');
 			response.sendLog(req, '» Base data imported.');
@@ -83,7 +83,7 @@ function importData (req, res, data) {
 		
 			// Iterate delete request options, 2 requests in parallel
 			return Promise.map(deleteOptions, (options) => {
-				// Delete a content item from a Kentico Cloud project
+				// Delete a content item from a Kentico Kontent project
 				return requestPromise(options)
 					.catch((error) => {
 						throw error;

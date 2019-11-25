@@ -1,6 +1,6 @@
 {
   "name": "migration-tool",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": false,
   "scripts": {
     "start": "nodemon ./server.js"
@@ -38,5 +38,5 @@
   "keywords": [],
   "author": "Milan Lund",
   "license": "MIT",
-  "description": "Imports data to a Kentico Cloud project."
+  "description": "Imports data to a Kentico Kontent project."
 }

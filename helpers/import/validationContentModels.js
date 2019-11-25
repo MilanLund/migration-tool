@@ -4,7 +4,7 @@
 const response = require('../general/response'),
 	sanitizeHtml = require('sanitize-html');
 
-// Compares import data with structure of content models defined in the Kentico Cloud project
+// Compares import data with structure of content models defined in the Kentico Kontent project
 // Validates data types of imported data and mapped content elements
 function importDataFitContentModels(importData, contentModels) {
 	let isDataValid = response.getPositiveResponse(),
@@ -14,7 +14,7 @@ function importDataFitContentModels(importData, contentModels) {
 
 	// Iterate items in import data
 	for (let i = 0; i < importData.items.length; i++) {
-		// Flag for indicating whether a content model referenced in the currently iterated content item exists in the Kentico Cloud project
+		// Flag for indicating whether a content model referenced in the currently iterated content item exists in the Kentico Kontent project
 		contentModelExists = false;
 
 		// Iterate list of content models

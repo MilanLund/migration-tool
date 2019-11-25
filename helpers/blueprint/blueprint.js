@@ -11,7 +11,7 @@ function renderBlueprint (req, res, contentModels) {
 	let model = getContentModel(contentModels, req.params.contentModel);
     
 	if (model === null) {
-		response.send(res, 405, 'Content model "' + req.params.contentModel + '" does not exist in the Kentico Cloud project.');
+		response.send(res, 405, 'Content model "' + req.params.contentModel + '" does not exist in the Kentico Kontent project.');
 	}
 
 	// Get blueprint for a requested format/content type

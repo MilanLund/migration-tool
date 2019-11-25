@@ -35,7 +35,7 @@
 			response;
 
 		// Assemble endpoint url
-		request.open('GET', 'https://deliver.kenticocloud.com/' + projectId + '/types', true);
+		request.open('GET', 'https://deliver.kontent.ai/' + projectId + '/types', true);
 		request.setRequestHeader('Content-Type', 'application/json');
 
 		// When a response is obtained

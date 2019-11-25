@@ -24,7 +24,7 @@ function setValidationFailed(property, key, keysLength, errorMessage, index) {
 	return isDataValid;
 }
 
-// Sets a validation response in case content model does not exist in the Kentico Cloud project
+// Sets a validation response in case content model does not exist in the Kentico Kontent project
 function setValidationFailedContentModels(contentModel, index) {
 	let isDataValid = {};
 

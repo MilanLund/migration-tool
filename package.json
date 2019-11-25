@@ -13,7 +13,7 @@
     "body-parser": "~1.15.2",
     "cookie-parser": "^1.4.3",
     "csvtojson": "^1.1.9",
-    "debug": "~2.2.0",
+    "debug": "~4.1.1",
     "express": "~4.14.0",
     "express-bearer-token": "^2.1.0",
     "morgan": "~1.7.0",

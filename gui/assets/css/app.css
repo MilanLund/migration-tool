@@ -362,7 +362,7 @@ textarea {
     opacity: 1;
   }
   50% {
-    opacity: .5;
+    opacity: 0.5;
   }
   100% {
     opacity: 1;
@@ -762,7 +762,7 @@ div.CodeMirror-dragcursors {
 }
 /* Used to force a border model for a node */
 .cm-force-border {
-  padding-right: .1px;
+  padding-right: 0.1px;
 }
 @media print {
   /* Hide the cursor when printing */

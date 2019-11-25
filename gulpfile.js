@@ -5,17 +5,17 @@ const gulp = require('gulp'),
 	rename = require('gulp-rename'),
 	concat = require('gulp-concat'),
 	uglify = require('gulp-uglify'),
-    autoprefixer = require('gulp-autoprefixer'),
-    eslint = require('gulp-eslint');
+	autoprefixer = require('gulp-autoprefixer'),
+	eslint = require('gulp-eslint');
 
 gulp.task('watch', () => {
 	gulp.watch([
 		'./gui/assets/css/src/**/*.less',
 		'./gui/assets/js/src/**/*.js'
-	], [
+	], gulp.parallel([
 		'less',
 		'js'
-	]);
+	]));
 });
 
 gulp.task('less', () => {
@@ -42,8 +42,8 @@ gulp.task('js', () => {
 		'./gui/assets/js/src/custom/code-editor.js',  
 		'./gui/assets/js/src/custom/import.js',   
 		'./gui/assets/js/src/custom/blueprint.js'
-    ])
-        .pipe(eslint())
+	])
+		.pipe(eslint())
 		.pipe(concat('app.js'))
 		.pipe(gulp.dest('./gui/assets/js/'))
 		.pipe(uglify())
@@ -53,4 +53,6 @@ gulp.task('js', () => {
 		.pipe(gulp.dest('./gui/assets/js/'));
 });
 
-gulp.task('default', ['less', 'js', 'watch']);
+gulp.task('default', gulp.series(['less', 'js', 'watch'], (done) => {
+	return done();
+}));

@@ -125,7 +125,10 @@ function checkContentElementType(dataElement, modelElement) {
 function encapsulateRichText (dataElement, modelElement) {	
 	if (modelElement.type === 'rich_text') {
 		var clean = sanitizeHtml(dataElement, {
-			allowedTags: [ 'p', 'h1', 'h2', 'h3', 'h4', 'strong', 'a', 'em', 'ol', 'ul', 'li', 'table', 'tbody', 'td', 'td', 'figure', 'img', 'object', 'br' ]
+			allowedTags: [ 'p', 'h1', 'h2', 'h3', 'h4', 'strong', 'a', 'em', 'ol', 'ul', 'li', 'table', 'tbody', 'td', 'td', 'figure', 'img', 'object', 'br' ],
+			allowedAttributes: {
+				object: ['type', 'data-type', 'data-external-id', 'data-id']
+			}
 		});
 
 		return clean;

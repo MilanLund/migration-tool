@@ -4,7 +4,7 @@
 function getAPIKeyProjectIDOptions(req) {
 	return {
 		method: 'GET',
-		uri: 'https://manage.kontent.ai/projects/' + req.params.projectId + '/items',
+		uri: 'https://manage.kontent.ai/v1/projects/' + req.params.projectId + '/items',
 		auth: {
 			'bearer': (typeof req.token !== 'undefined') ? req.token : ''
 		},
@@ -25,7 +25,7 @@ function getContentModelsOptions(req) {
 function getAddOptions(req, data) {
 	return {
 		method: 'POST',
-		uri: 'https://manage.kontent.ai/projects/' + req.params.projectId + '/items',
+		uri: 'https://manage.kontent.ai/v1/projects/' + req.params.projectId + '/items',
 		auth: {
 			'bearer': (typeof req.token !== 'undefined') ? req.token : ''
 		},
@@ -38,7 +38,7 @@ function getAddOptions(req, data) {
 function getUpsertOptions(req, data, itemId, languageVariant) {
 	return {
 		method: 'PUT',
-		uri: 'https://manage.kontent.ai/projects/' + req.params.projectId + '/items/' + itemId + '/variants/codename/' + languageVariant,
+		uri: 'https://manage.kontent.ai/v1/projects/' + req.params.projectId + '/items/' + itemId + '/variants/codename/' + languageVariant,
 		auth: {
 			'bearer': (typeof req.token !== 'undefined') ? req.token : ''
 		},
@@ -51,7 +51,7 @@ function getUpsertOptions(req, data, itemId, languageVariant) {
 function getDeleteOptions(req, itemId) {
 	return {
 		method: 'DELETE',
-		uri: 'https://manage.kontent.ai/projects/' + req.params.projectId + '/items/' + itemId,
+		uri: 'https://manage.kontent.ai/v1/projects/' + req.params.projectId + '/items/' + itemId,
 		auth: {
 			'bearer': (typeof req.token !== 'undefined') ? req.token : ''
 		},

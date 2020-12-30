@@ -2,7 +2,7 @@
 'use strict';
 
 const requestPromise = require('request-promise'),
-	csvtojson = require('csvtojson'),
+	csvtojson = require('csvtojson/v1'),
 	request = require('../helpers/general/request'),
 	response = require('../helpers/general/response'),
 	validation = require('../helpers/import/validation'),
@@ -46,7 +46,7 @@ function validateImportJSONData (req, res, data) {
 
 function validateImportCSVData (req, res) {
 	var data = { items: [] };
-    
+	
 	csvtojson({
 		checkType: true,
 		delimiter: 'auto'

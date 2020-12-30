@@ -26,7 +26,7 @@ Both the GUI and the endpoint interface require you to acknowledge [structure of
 
 There are 2 ways how to access the GUI:
 
-1. Use the GUI on a testing Heroku instance:
+1. Use the GUI on a testing Heroku instance (please use this option only for evaluation purposes):
 ```sh
 https://migration-tool-kentico-kontent.herokuapp.com/
 ```
@@ -60,7 +60,7 @@ When you hit the **Import data** button you can see information about the ongoin
 
 There are 2 ways how to access the endpoint:
 
-1. Use an endpoint on a testing Heroku instance:
+1. Use an endpoint on a testing Heroku instance (please use this option only for evaluation purposes):
 ```sh
 https://migration-tool-kentico-kontent.herokuapp.com/<YOUR_PROJECT_ID>
 ```

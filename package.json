@@ -18,7 +18,7 @@
     "express-bearer-token": "^2.4.0",
     "morgan": "~1.10.0",
     "nodemon": "^2.0.6",
-    "pug": "^3.0.0",
+    "pug": "^3.0.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
     "sanitize-html": "^2.3.0",

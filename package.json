@@ -14,7 +14,7 @@
     "cookie-parser": "^1.4.5",
     "csvtojson": "^2.0.10",
     "debug": "~4.3.1",
-    "express": "~4.17.1",
+    "express": "~4.17.3",
     "express-bearer-token": "^2.4.0",
     "morgan": "~1.10.0",
     "nodemon": "^2.0.6",
